@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:fragment="dynamic(view)">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="/plugins/animate/animate.min.css">
+        <link rel="stylesheet" href="/plugins/fontawesome/all.css">
+        <link rel="stylesheet" href="/plugins/webfonts/font.css">
+        <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="/css/owl.theme.default.min.css" type="text/css">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" href="/plugins/uikit/uikit.min.css" />
+        <link rel="stylesheet" href="/css/checkout.css">
+        
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="ctrl">
+<div class="header">
+          <a style="color: #ffffff;text-decoration: none;" href="index.html">MIỄN PHÍ VẬN CHUYỂN VỚI ĐƠN HÀNG NỘI THÀNH > 300K
+            - ĐỔI TRẢ TRONG 30 NGÀY - ĐẢM BẢO CHẤT LƯỢNG</a>
+			        </div>
+			<nav th:insert="~{/layout/menu.html ::nav}"></nav>
+			<hr>
+			<div th:replace="${view}"></div>
+			<hr>
+			<footer th:insert="~{/layout/footer.html ::footer}"></footer>
+			
+	  <script async defer crossorigin="anonymous" src="/plugins/sdk.js"></script>
+	  <script src="/plugins/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+	  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+	  <script src="/plugins/bootstrap/popper.min.js"></script>
+	  <script src="/plugins/bootstrap/bootstrap.min.js"></script>
+	  <script src="/plugins/owl.carousel/owl.carousel.min.js"></script>
+	  <script src="/js/home.js"></script>
+	  <script src="/js/script.js"></script>
+	  <script src="/plugins/uikit/uikit.min.js"></script>
+	  <script src="/plugins/uikit/uikit-icons.min.js"></script>
+	  <script src="/js/shopping-cart-app.js"></script>
+</body>
+</html>
