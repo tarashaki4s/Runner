@@ -57,6 +57,9 @@ public class Account implements Serializable{
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
     List<Authority> authorities;
 	
+    @JsonIgnore
+	@OneToMany(mappedBy = "account")
+	List<Rate> accounts;
 	
 	
 }
