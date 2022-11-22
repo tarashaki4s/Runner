@@ -113,7 +113,7 @@ public class SecurityController {
   }
 
   @PostMapping("/home/signUp")
-  public ResponseEntity<?> registerUser(@Valid SignUpDTO signUpRequest) {
+  public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpDTO signUpRequest) {
     if (accountDAO.existsByUsername(signUpRequest.getUserName())) {
       return ResponseEntity
           .badRequest()

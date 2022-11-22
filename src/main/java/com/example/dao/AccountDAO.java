@@ -13,10 +13,10 @@ public interface AccountDAO extends JpaRepository<Account, String>{
 	Optional<Account> findByUsername(String username);
 	Boolean existsByUsername(String userName);
 	Boolean existsByEmail(String email);
-//	@Query("SELECT DISTINCT ar.account FROM Authority ar WHERE ar.role.id IN('DIRE','STAF')")
-//	List<Account> getAdministrators();
+	@Query(value=("SELECT DISTINCT ar.account FROM Authority ar WHERE ar.role.id IN('ROLE_USER','ROLE_ADMIN')"),nativeQuery = true)
+	List<Account> getAdministrators();
 
-	@Query("SELECT o FROM Account o WHERE o.Username=?1")
+	@Query("SELECT o FROM Account o WHERE o.username=?1")
 	List<Account> findByUserName(String userName);
     
 }
