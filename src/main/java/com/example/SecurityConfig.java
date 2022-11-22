@@ -96,7 +96,7 @@ public class SecurityConfig {
         .authorizeRequests().antMatchers("/home/**", "/layout/**").permitAll()
 //				.antMatchers("/js/**","/css/**","/images/**","assets/images/**","hinhanhcustom/**","fints.quicksand/**","plugins/**").permitAll()
         .antMatchers("/order/**").authenticated()
-        .antMatchers("/admin/**").hasAnyRole("ROLE_ADMIN")
+        .antMatchers("/admin/**").hasAnyRole("ROLE_USER", "ROLE_ADMIN")
 //				.antMatchers("/rest/authorities","/rest/accounts/create").hasRole("DIRE").anyRequest().permitAll()
         .antMatchers("/auth/**").permitAll();
     http.formLogin()
