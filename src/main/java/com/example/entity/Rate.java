@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -31,8 +32,11 @@ public class Rate implements Serializable{
 	int id;
 	
 	@Column(name = "Stars")
-	int star;
-	
+	int stars;
+
+	@Column(name = "RatedDate")
+	Date ratedDate;
+
 	@Column(name = "Comment")
 	String comment;
 	

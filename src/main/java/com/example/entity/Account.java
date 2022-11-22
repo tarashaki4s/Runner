@@ -30,6 +30,9 @@ import lombok.NoArgsConstructor;
 @Table(name="Accounts")
 public class Account implements Serializable{
 	@Id
+	@Column(name = "id")
+	private int id;
+
 	@Column(name="Username")
 	private String Username;
 	
@@ -54,12 +57,12 @@ public class Account implements Serializable{
     List<Order> orders;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "account")
     List<Authority> authorities;
 	
     @JsonIgnore
 	@OneToMany(mappedBy = "account")
-	List<Rate> accounts;
+	List<Rate> rates;
 	
 	
 }

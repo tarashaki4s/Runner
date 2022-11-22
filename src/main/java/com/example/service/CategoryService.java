@@ -10,7 +10,4 @@ import com.example.entity.Category;
 
 public interface CategoryService {
 	List<Category> findAll();
-
-	
-
 }

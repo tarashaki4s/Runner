@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Runner</title>
+    <link rel="stylesheet" href="/css/comment.css">
+</head>
+
+<body th:fragment="comment">
+    <div class="row d-flex justify-content-center comment-place" style="margin-bottom: 60px">
+        <div class="col-lg-12">
+            <div class="">
+                <div class="card-body text-center">
+                    <h4 class="card-title">Đánh giá sản phẩm</h4>
+                </div>
+                <style>
+
+                    .rating {
+                        width: 226px;
+                        font-size: 45px;
+                        overflow: hidden;
+                    }
+
+                        .rating a,
+                        .rating label {
+                            float: right;
+                            color: #aaa;
+                            text-decoration: none;
+                            -webkit-transition: color .4s;
+                            -moz-transition: color .4s;
+                            -o-transition: color .4s;
+                            transition: color .4s;
+                        }
+
+                            .rating label:hover ~ label,
+                            .rating input:focus ~ label,
+                            .rating label:hover,
+                            .rating a:hover,
+                            .rating a:hover ~ a,
+                            .rating a:focus,
+                            .rating a:focus ~ a {
+                                color: orange;
+                                cursor: pointer;
+                            }
+
+                    .rating2 {
+                        direction: rtl;
+                    }
+                </style>
+                <form th:action="@{/rate/{productId}/{userName}(productId = ${product.id}, userName='sang123')}" method="POST">
+                    <div class="write-comment-place">
+                            <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                                <textarea name="comment" class="form-control ml-1 shadow-none textarea"></textarea>
+                            </div>
+                        <div class="col-6">
+
+                            <div class="rating rating2">
+
+                                <!--
+                                -->
+                                <a href="#5" title="Give 5 stars" onclick="setStar(5)">★</a>
+                                <!--
+                                -->
+                                <a href="#4" title="Give 4 stars" onclick="setStar(4)">★</a>
+                                <!--
+                                -->
+                                <a href="#3" title="Give 3 stars" onclick="setStar(3)">★</a>
+                                <!--
+                                -->
+                                <a href="#2" title="Give 2 stars" onclick="setStar(2)">★</a>
+                                <!--
+                                -->
+                                <a href="#1" title="Give 1 stars" onclick="setStar(1)">★</a>
+                                <input type="hidden" name="stars" id="star" value="5">
+                            </div>
+                        </div>
+                            <div class="mt-2 text-right">
+                                <button class="btn btn-primary btn-sm shadow-none" type="submit" formmethod="post" >
+                                    Xác nhận
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">
+                                    Cancel
+                                </button>
+                            </div>
+                    </div>
+
+                </form>
+                <div class="comment-widgets" th:each="rate:${rates}">
+                    <!-- Comment Row -->
+
+                    <div class="d-flex flex-row comment-row m-t-0" style="margin-bottom: 40px;">
+                        <div class="p-2"><img src="https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg" alt="user" width="50" class="rounded-circle"></div>
+                        <div class="comment-text w-100">
+                            <h6 class="font-medium" th:text="${rate.account.Fullname}"><!--Full Name--></h6>
+                            <span class="m-b-15 d-block" th:text="${rate.comment}" style="margin-bottom: 10px;"><!--comment--> </span>
+                            <div class="icons align-items-center">
+
+                                <i class="fa fa-star text-warning" th:each="i: ${#numbers.sequence(1, rate.stars)}"></i>
+
+                            </div>
+                            <div class="comment-footer">
+                                <span class="text-muted float-right" th:text="${#dates.format(rate.ratedDate, 'dd-MM-yyyy')}"><!--Comment Date--></span>
+<!--                                <button type="button" class="btn btn-secondary btn-sm">Edit</button>-->
+<!--                                <button type="button" class="btn btn-success btn-sm">Publish</button>-->
+<!--                                <button type="button" class="btn btn-danger btn-sm">Delete</button>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setStar(starNumber) {
+            document.getElementById("star").value = starNumber;
+            console.log(document.getElementById("star").value);
+            return false;
+        }
+    </script>
+</body>
+</html>

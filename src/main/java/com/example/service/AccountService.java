@@ -17,6 +17,6 @@ public interface AccountService {
 
 	public Account create(Account account);
 
-	
+	public Account findByUserName(String userName);
 
 }

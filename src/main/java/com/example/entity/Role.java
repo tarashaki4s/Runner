@@ -23,10 +23,10 @@ import lombok.NoArgsConstructor;
 @Table(name="Roles")
 public class Role implements Serializable{
 	 @Id
-	    private String id;
+	 private String id;
 	 @Column(name="Name")
-	    private String name;
-	    @JsonIgnore
-	    @OneToMany(mappedBy = "role")
-	    List<Authority> authorities;
+	 private String name;
+	 @JsonIgnore
+	 @OneToMany(mappedBy = "role")
+	 List<Authority> authorities;
 }

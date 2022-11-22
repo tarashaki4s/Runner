@@ -46,6 +46,11 @@ public class AccountServiceImpl implements AccountService{
 		return adao.save(account); 
 	}
 
+	@Override
+	public Account findByUserName(String userName) {
+		return adao.findByUserName(userName).get(0);
+	}
+
 
 
 }
