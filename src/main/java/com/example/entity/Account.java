@@ -2,45 +2,40 @@ package com.example.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 @SuppressWarnings("serial")
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="Accounts")
 public class Account implements Serializable{
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+
 	@Column(name="Username")
-	private String Username;
+	private String username;
 	
 	@Column(name="Password")
-	private String Password;
+	private String password;
 	
 	@Column(name="Email")
-	private String Email;
+	private String email;
 	
 	@Column(name="Fullname")
-	private String Fullname;
+	private String fullName;
 	
 	@Column(name="Gender")
 	private Boolean Gender;
@@ -53,10 +48,14 @@ public class Account implements Serializable{
     @OneToMany(mappedBy = "account")
     List<Order> orders;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-    List<Authority> authorities;
-	
-	
-	
+		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+		@ManyToMany(fetch = FetchType.EAGER)
+		@JoinTable(name= "Account_Role",
+				joinColumns = @JoinColumn(name = "Account_Id"),
+				inverseJoinColumns = @JoinColumn(name = "Role_Id"))
+		private Set<Role> role = new HashSet<>();
+
+
+	public Account(String username, String email, String fullName, Boolean gender, Boolean active, String encode) {
+	}
 }

@@ -3,28 +3,28 @@
 
 <head>
     <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="/plugins/animate/animate.min.css">
-  <link rel="stylesheet" href="/plugins/fontawesome/all.css">
-  <link rel="stylesheet" href="/plugins/webfonts/font.css">
-  <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
-  <link rel="stylesheet" href="/css/owl.theme.default.min.css" type="text/css">
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/animate/animate.min.css">
+    <link rel="stylesheet" href="/plugins/fontawesome/all.css">
+    <link rel="stylesheet" href="/plugins/webfonts/font.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 
-  <!-- UIkit CSS -->
-  <link rel="stylesheet" href="/plugins/uikit/uikit.min.css" />
-  <link rel="stylesheet" href="/css/sign.css">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="/plugins/uikit/uikit.min.css"/>
+    <link rel="stylesheet" href="/css/sign.css">
 
-  <title>Runner</title>
+    <title>Runner</title>
 
 </head>
 
 <body>
- <nav th:insert="~{/layout/menu.html ::nav}"></nav>
- 
-  <!--Content-->
-  <div class="content">
+<nav th:insert="~{/layout/menu.html ::nav}"></nav>
+
+<!--Content-->
+<div class="content">
     <section class="signup">
         <div class="container">
             <div class="signin-left">
@@ -35,57 +35,58 @@
             <div class="signin-right ">
                 <form action="/home/signUp" method="post">
                     <div class="firstname form-control1 ">
-                        <input type="text" name="txtFullName"  id="firstname" placeholder="FullName ">
+                        <input type="text" name="fullName" placeholder="FullName ">
                     </div>
                     <div class="firstname form-control1 ">
-                        <input type="text" name="txtUserName"  id="firstname" placeholder="UserName">
+                        <input type="text" name="userName" placeholder="UserName">
                     </div>
-                     <div class="password form-control1">
-                        <input type="password" name="txtPassword" id="password" placeholder="Password">
+                    <div class="password form-control1">
+                        <input type="password" name="password" placeholder="Password">
                     </div>
                     <div class="sex form-control1">
-                       <div class="female">
-                         
-                          <input type="radio" id="female" checked   name="Gender" value="false">
-                          <label for="female">Nữ</label>
-                       </div>
-                       <div class="male">
-                        
-                        <input type="radio" id="male"  name="Gender" value="true">>
-                        <label for="male">Nam</label>
-                     </div>
+                        <div class="female">
+
+                            <input type="radio" id="female" checked name="gender" value="false">
+                            <label for="female">Nữ</label>
+                        </div>
+                        <div class="male">
+                            <input type="radio" id="male" name="gender" value="true">
+                            <label for="male">Nam</label>
+                        </div>
                     </div>
                     <div class="email form-control1">
-                        <input type="email"  id="email" name="txtEmail" placeholder="Email">
+                        <input type="email" id="email" name="email" placeholder="Email">
                     </div>
-                   
-                    <div class="recaptcha form-control1">This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.</div>
+
+                    <div class="recaptcha form-control1">This site is protected by reCAPTCHA and the Google <a href="">Privacy
+                        Policy</a> and <a href="">Terms of Service</a> apply.
+                    </div>
                     <div style="color: red;" th:text="${msg}"></div>
                     <br>
                     <button class="submit">
-                      <p>Đăng kí</p>
-                       
+                        <p>Đăng kí</p>
+
                     </button>
                     <div class="backto">
-                      <a th:href="@{/home/index}"><i class="fa fa-long-arrow-alt-left"></i> Quay lại trang chủ</a>
+                        <a th:href="@{/home/index}"><i class="fa fa-long-arrow-alt-left"></i> Quay lại trang chủ</a>
                     </div>
                 </form>
             </div>
         </div>
-    </section>    
+    </section>
 
-  </div>
-   <footer th:insert="~{/layout/footer.html ::footer}"></footer>
+</div>
+<footer th:insert="~{/layout/footer.html ::footer}"></footer>
 <script async defer crossorigin="anonymous" src="/plugins/sdk.js"></script>
-  <script src="/plugins/jquery-3.4.1/jquery-3.4.1.min.js"></script>
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-  <script src="/plugins/bootstrap/popper.min.js"></script>
-  <script src="/plugins/bootstrap/bootstrap.min.js"></script>
-  <script src="/plugins/owl.carousel/owl.carousel.min.js"></script>
-  <script src="/js/home.js"></script>
-  <script src="/js/script.js"></script>
-  <script src="/plugins/uikit/uikit.min.js"></script>
-  <script src="/plugins/uikit/uikit-icons.min.js"></script>
+<script src="/plugins/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<script src="/plugins/bootstrap/popper.min.js"></script>
+<script src="/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="/plugins/owl.carousel/owl.carousel.min.js"></script>
+<script src="/js/home.js"></script>
+<script src="/js/script.js"></script>
+<script src="/plugins/uikit/uikit.min.js"></script>
+<script src="/plugins/uikit/uikit-icons.min.js"></script>
 </body>
 
 </html>
