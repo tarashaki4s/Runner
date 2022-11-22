@@ -18,7 +18,7 @@ public class HomeController {
 	@Autowired
 	ProductService productService;
 
-	@GetMapping("/home/index")
+	@GetMapping(value = {"/home/index", ""})
 	public String index(Model model ) {
 		List<Product> list = productService.findTheBestProduct();
 		model.addAttribute("itemsindex", list);

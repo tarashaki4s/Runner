@@ -13,12 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.example.entity.Account;
-import com.example.entity.OrderDetail;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,25 +23,33 @@ import lombok.NoArgsConstructor;
 @SuppressWarnings("serial")
 @Data
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name="Orders")
-public class Order implements Serializable{
+@NoArgsConstructor
+@Table(name="Rates")
+public class Rate implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
-	@Column(name="Address")
-	String address;
+	int id;
+	
+	@Column(name = "Stars")
+	int stars;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "Createdate")
-	Date CreateDate = new Date();
+	@Column(name = "RatedDate")
+	Date ratedDate;
 
+	@Column(name = "Comment")
+	String comment;
+	
 	@ManyToOne
-	@JoinColumn(name = "Username")
+	@JoinColumn(name = "Account")
 	Account account;
 	
+	@ManyToOne
+	@JoinColumn(name = "Product")
+	Product product;
+	
 	@JsonIgnore
-	@OneToMany(mappedBy = "order")
-	List<OrderDetail> orderDetails;
+	@OneToMany(mappedBy = "rate")
+	List<CommentImage> commentImages;
+	
 }

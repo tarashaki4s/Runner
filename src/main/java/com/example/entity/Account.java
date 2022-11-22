@@ -19,43 +19,52 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="Accounts")
-public class Account implements Serializable{
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+@Table(name = "Accounts")
+public class Account implements Serializable {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	@Column(name="Username")
-	private String username;
-	
-	@Column(name="Password")
-	private String password;
-	
-	@Column(name="Email")
-	private String email;
-	
-	@Column(name="Fullname")
-	private String fullName;
-	
-	@Column(name="Gender")
-	private Boolean Gender;
-	
-	
-	@Column(name="Active")
-	private Boolean Active;
-	
-    @JsonIgnore
-    @OneToMany(mappedBy = "account")
-    List<Order> orders;
+  @Column(name = "Username")
+  private String username;
 
-		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-		@ManyToMany(fetch = FetchType.EAGER)
-		@JoinTable(name= "Account_Role",
-				joinColumns = @JoinColumn(name = "Account_Id"),
-				inverseJoinColumns = @JoinColumn(name = "Role_Id"))
-		private Set<Role> role = new HashSet<>();
+  @Column(name = "Password")
+  private String password;
+
+  @Column(name = "Email")
+  private String email;
+
+  @Column(name = "Fullname")
+  private String fullName;
+
+  @Column(name = "Gender")
+  private Boolean Gender;
 
 
-	public Account(String username, String email, String fullName, Boolean gender, Boolean active, String encode) {
-	}
+  @Column(name = "Active")
+  private Boolean Active;
+
+  @JsonIgnore
+  @OneToMany(mappedBy = "account")
+  List<Order> orders;
+
+  @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "Account_Role",
+      joinColumns = @JoinColumn(name = "Account_Id"),
+      inverseJoinColumns = @JoinColumn(name = "Role_Id"))
+  private Set<Role> role = new HashSet<>();
+
+
+  public Account(String username, String email, String fullName, Boolean gender, Boolean active, String encode) {
+  }
+
+  @JsonIgnore
+  @OneToMany(mappedBy = "account")
+  List<Authority> authorities;
+
+  @JsonIgnore
+  @OneToMany(mappedBy = "account")
+  List<Rate> rates;
+
 }

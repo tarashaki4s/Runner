@@ -61,8 +61,12 @@ public class Product implements Serializable{
 	@ManyToOne
     @JoinColumn(name = "Categoryid")
     Category category;
+	
     @JsonIgnore
     @OneToMany(mappedBy = "product")
     List<OrderDetail> orderDetails;
-
+    
+    @JsonIgnore
+	@OneToMany(mappedBy = "product")
+	List<Rate> rates;
 }

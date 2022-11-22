@@ -3,6 +3,7 @@ package com.example.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.service.RateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,9 +23,17 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 
+	@Autowired
+	RateService rateService;
+
 	@GetMapping("/product/detail/{id}")
 	public String detailproduct(@PathVariable("id") Integer id, Model model) {
 		Product sp = productService.findSanPhamById(id);
+		int page = 0;
+		int pageSize = 20;
+		boolean SORT_BY_DESC = false;
+		var rates = rateService.findByProductDESC(id, PageRequest.of(page,pageSize));
+		model.addAttribute("rates", rates);
 		model.addAttribute("product", sp);
 		return "home/detailproduct";
 	}

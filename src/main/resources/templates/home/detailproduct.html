@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="/plugins/uikit/uikit.min.css" />
   <link rel="stylesheet" type="text/css" href="/css/style.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/comment.css">
 </head>
 
 <body>
@@ -135,34 +136,7 @@
 
                 </div>
               </div>
-              <!-- Flickity HTML init -->
 
-              <!-- <div id="product-zoom-in" class="product-zoom icon-pr-fix
-                  hidden-md hidden-sm" style="padding-top:2rem;"
-                  aria-label="Zoom in" title="Zoom in">
-                  <span class="zoom-in" aria-hidden="true">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                      y="0px"
-                      viewBox="0 0 36 36"
-                      style="enable-background:new 0 0 36 36; width: 40px;
-                      height: 40px;"
-                      xml:space="preserve">
-                      <polyline points="6,14 9,11 14,16 16,14 11,9 14,6
-                        6,6">
-                      </polyline>
-                      <polyline points="22,6 25,9 20,14 22,16 27,11 30,14
-                        30,6">
-                      </polyline>
-                      <polyline points="30,22 27,25 22,20 20,22 25,27
-                        22,30 30,30">
-                      </polyline>
-                      <polyline points="14,30 11,27 16,22 14,20 9,25 6,22
-                        6,30">
-                      </polyline>
-                    </svg>
-                  </span>
-                </div> -->
             </div>
             <div class="col-md-5 col-sm-12 col-xs-12
                 product-content-desc" id="detail-product">
@@ -338,9 +312,13 @@
               </div>
             </div>
           </div>
+          <!--Comment place-->
+
+          <div th:replace="~{home/comment::comment}"></div>
+
           <div class="list-productRelated clearfix">
             <div class="heading-title text-center">
-              <h2>Sản phẩm liên quan</h2>
+              <h2>Sản phẩm liên quan </h2>
             </div>
             <div class="container">
               <div class="row">

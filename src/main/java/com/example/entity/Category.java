@@ -25,9 +25,9 @@ import lombok.NoArgsConstructor;
 public class Category implements Serializable{
 	@Id
 	private Integer Id;
-	@Column(name="Name")
+	@Column(name = "Name")
 	private String Name;
-	 @JsonIgnore
-	    @OneToMany(mappedBy = "category")
-	    List<Product> products;
+	@JsonIgnore
+	@OneToMany(mappedBy = "category")
+	List<Product> products;
 }
