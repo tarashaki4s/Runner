@@ -3,6 +3,7 @@ package com.example.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.service.CategoryService;
 import com.example.service.RateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,6 +25,9 @@ public class ProductController {
 	ProductService productService;
 
 	@Autowired
+	CategoryService categoryService;
+
+	@Autowired
 	RateService rateService;
 
 	@GetMapping("/product/detail/{id}")
@@ -39,10 +43,24 @@ public class ProductController {
 	}
 
 	@GetMapping("/product/list")
-	public String product(Model model, @RequestParam("page") Optional<Integer> page) {
+	public String product(Model model,
+						  @RequestParam("page") Optional<Integer> page,
+						  @RequestParam("category") Optional<Integer> categoryId) {
+
 		Pageable pageable = PageRequest.of(page.orElse(0), 8);
-		Page<Product> list = productService.findAll(pageable);
+		Page<Product> list = Page.empty();
+
+		if(categoryId.isEmpty()) {
+			list = productService.findAll(pageable);
+		} else {
+			list = productService.findSanPhamByLSP(categoryId.get(), pageable);
+		}
+
+		var categories = categoryService.findAll();
+
 		model.addAttribute("items", list);
+		model.addAttribute("categories", categories);
 		return "home/product";
 	}
+
 }

@@ -67,15 +67,13 @@
                             class="icon-control"></span></div>
                     <ul class="sanpham" style="display: block;list-style-type:none;">
 
-                        <li>
+                        <li th:each="category: ${categories}">
                             <span></span>
-                            <a>Nike</a>
+                            <a th:href="@{/product/list(category=${category.Id})}" th:text="${category.Name}"
+                               class="text-decoration-none"></a>
                         </li>
+                        <a th:href="@{/product/list}" th:text="${'Tất cả sản phẩm'}" class="text-decoration-none"></a>
 
-                        <li>
-                            <span></span>
-                            <a>Adidass</a>
-                        </li>
 
                     </ul>
                 </div>
@@ -148,15 +146,17 @@
                 </div>
                 <div class="col-md-4 d-sm-none d-md-block d-none d-sm-block" style="float: left">
                     <div class="option browse-tags">
-              <span class="custom-dropdown custom-dropdown--grey">
-                <select class="sort-by custom-dropdown__select">
-                  <option value="price-ascending">Giá: Tăng dần</option>                  
-                  <option value="title-ascending">Tên: A-Z</option>
-                  <option value="best-selling">Bán chạy nhất
-                  </option>
-                 
-                </select>
-              </span>
+                      <span class="custom-dropdown custom-dropdown--grey">
+                          <form action="" method="post">
+                              <button type="button" class="btn btn-outline-primary">Mới nhất</button>
+                              <button type="button" class="btn btn-outline-primary">Bán chạy</button>
+
+                                <select class="sort-by custom-dropdown__select">
+                                  <option value="price-ascending" th:value="asc">Giá: Thấp đến cao</option>
+                                  <option value="price-ascending" th:value="desc">Giá: Cao đến thấp</option>
+                                </select>
+                         </form>
+                      </span>
                     </div>
                 </div>
             </div>
