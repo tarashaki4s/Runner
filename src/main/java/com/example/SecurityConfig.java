@@ -93,10 +93,10 @@ public class SecurityConfig {
     http.cors().and().csrf().disable()
         .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-        .authorizeRequests().antMatchers("/home/**", "/layout/**").permitAll()
+        .authorizeRequests().antMatchers("/home/**", "/layout/**","/admin/**").permitAll()
 //				.antMatchers("/js/**","/css/**","/images/**","assets/images/**","hinhanhcustom/**","fints.quicksand/**","plugins/**").permitAll()
         .antMatchers("/order/**").authenticated()
-        .antMatchers("/admin/**").hasAnyRole("ROLE_USER", "ROLE_ADMIN")
+//        .antMatchers("/admin/**").hasAnyRole("ROLE_USER", "ROLE_ADMIN")
 //				.antMatchers("/rest/authorities","/rest/accounts/create").hasRole("DIRE").anyRequest().permitAll()
         .antMatchers("/auth/**").permitAll();
     http.formLogin()

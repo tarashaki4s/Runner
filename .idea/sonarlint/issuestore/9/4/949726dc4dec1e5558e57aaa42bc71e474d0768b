@@ -1,0 +1,11 @@
+
+f	java:S116)"QRename this field "Gender" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÏ¡¤
+f	java:S116-"QRename this field "Active" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×ˆşÏ
+9
+java:S19481"#Make "orders" private or transient.(ŒŞãó
+C
+java:S1948@"-Make "authorities" transient or serializable.(³Í®
+8
+java:S1948D""Make "rates" private or transient.(Ô™³Æ
+A
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü

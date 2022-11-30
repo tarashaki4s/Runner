@@ -86,6 +86,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public List<Product> findTheNewProduct() {
+		return dao.findThenewProduct();
+	}
+
+	@Override
 	public Page<Product> SoftByPriceGiam(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return dao.SoftByPriceGiam(pageable);
@@ -97,11 +102,7 @@ public class ProductServiceImpl implements ProductService{
 		return dao.SoftByNameZA(pageable);
 	}
 
-	@Override
-	public Page<Product> findTheBestProductSale(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return (Page<Product>) dao.findTheBestProductSale(pageable);
-	}
+
 
 	@Override
 	public Product findSanPhamById(Integer id) {
@@ -112,7 +113,7 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<Product> findProduct(String request) {
 		// TODO Auto-generated method stub
-		return dao.findProduct(request);
+		return dao.findByName(request);
 	}
 
 }

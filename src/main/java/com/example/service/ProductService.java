@@ -38,8 +38,8 @@ public interface ProductService {
 	
 	List<Product> findTheBestProduct();
 	
-	Page<Product> findTheBestProductSale( Pageable pageable);
+	List<Product> findTheNewProduct();
 	
-	List<Product> findProduct(String request);
+	List<Product> findProduct(String keyword);
 
 }

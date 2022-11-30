@@ -37,12 +37,15 @@ public class Order implements Serializable{
 	@Column(name="Address")
 	String address;
 
+	@Column(name="Status")
+	Boolean status;
+
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Createdate")
 	Date CreateDate = new Date();
 
 	@ManyToOne
-	@JoinColumn(name = "Username")
+	@JoinColumn(name = "Account_Id")
 	Account account;
 	
 	@JsonIgnore

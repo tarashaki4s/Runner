@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -45,6 +46,9 @@ public class Product implements Serializable{
 	
 	@Column(name="Amount")
 	private Integer Amount;
+
+	@Column(name="Create_date")
+	private Date Create_date;
 	
 	@Column(name="Color")
 	private String Color;

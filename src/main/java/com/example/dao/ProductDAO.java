@@ -41,9 +41,9 @@ public interface ProductDAO extends JpaRepository<Product,Integer>{
 	@Query(value="SELECT TOP(4) * FROM Products WHERE Active = 1 ORDER BY Quantitysold DESC", nativeQuery = true)
 	List<Product> findTheBestProduct();
 	
-	@Query(value="SELECT * FROM Products WHERE Active = 1 ORDER BY Quantitysold DESC", nativeQuery = true)
-	List<Product> findTheBestProductSale(Pageable pageable);
-	
-	@Query("SELECT sp FROM Product sp WHERE sp.Name =?1 ")
-	List<Product> findProduct(String request);
+	@Query(value="SELECT TOP(4) *  FROM Products WHERE Active = 1 ORDER BY Create_date DESC", nativeQuery = true)
+	List<Product> findThenewProduct();
+
+	@Query("SELECT sp FROM Product sp where sp.Name like %?1%")
+	List<Product> findByName(String keywords);
 }

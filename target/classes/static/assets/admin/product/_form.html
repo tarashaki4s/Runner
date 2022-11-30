@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <div>Size</div>
-                        <input ng-model="form.size" type="text" class="form-control" name="" id="">
+                        <input ng-model="form.size" type="text" class="form-control" name="" id="size">
                     </div>
                     <div class="form-group col-sm-6">
                         <div>Color</div>
@@ -34,7 +34,7 @@
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <div>Quantitysold</div>
-                        <input ng-model="form.quantitysold" type="text" class="form-control" name="" id="">
+                        <input ng-model="form.quantitysold" type="text" class="form-control" name="" id="quantitysold">
                     </div>
                     <div class="form-group col-sm-6">
                         <div>Amount</div>
@@ -44,7 +44,7 @@
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <div>Image1</div>
-                        <input ng-model="form.image1"  accept="image/gif, image/jpeg, image/png, image/jpg" onchange="angular.element(this).scope().imageChanged(this.files)" type="file" class="form-control" id="image1">
+                        <input ng-model="form.image1"   accept="image/gif, image/jpeg, image/png, image/jpg" onchange="angular.element(this).scope().imageChanged(this.files)" type="file" class="form-control" id="image1">
                     </div>
                     <div class="form-group col-sm-6">
                         <div>Image2</div>
@@ -71,10 +71,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <div>Create Date</div>
+                        <input ng-model="form.create_date" name="" id="create_date" type="text" class="form-control">
+                    </div>
+
+                </div>
                  <div class="row">
                     <div class="form-group col-sm-12">
                         <div>Describe</div>
-                        <textarea ng-model="form.describe" name="" id="" cols="60" rows="8"></textarea>
+                        <textarea ng-model="form.describe" name="" id="describe" cols="60" rows="8"></textarea>
                     </div>
                     
                 </div>

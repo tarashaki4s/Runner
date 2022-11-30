@@ -1,0 +1,7 @@
+
+b	java:S116"MRename this field "Id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×­ÒÒ
+i	java:S116"ORename this field "Name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(É¬­Áøÿÿÿÿ
+;
+java:S1948 "%Make "products" private or transient.(ƒ¹Ý»
+O
+java:S1128	"9Remove this unused import 'javax.persistence.JoinColumn'.(´Å¼á

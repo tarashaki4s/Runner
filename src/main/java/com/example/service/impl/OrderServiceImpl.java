@@ -49,4 +49,16 @@ public class OrderServiceImpl implements OrderService{
         return oDao.findByUsername(username);
     }
 
+    @Override
+    public List<Order> findByStatus() {
+        return oDao.findByStatus();
+    }
+
+    @Override
+    public Order updateStatus(Order order) {
+        // TODO Auto-generated method stub
+        order.setStatus(true);
+        return oDao.save(order);
+    }
+
 }
