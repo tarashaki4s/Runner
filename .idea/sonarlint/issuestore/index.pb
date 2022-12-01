@@ -19,10 +19,6 @@ b
 2src/main/java/com/example/entity/CommentImage.java,5\f\5fc6041a86a119a1a955afd9e09b11cd386df603
 ]
 -src/main/java/com/example/entity/Account.java,9\4\949726dc4dec1e5558e57aaa42bc71e474d0768b
-l
-<src/main/java/com/example/service/impl/OrderServiceImpl.java,2\a\2a3e960b3eb8fb6fd8cd7f9db57bb97281959e7c
-h
-8src/main/java/com/example/controller/RateController.java,6\4\648c1efe27864e21da45d96782d2ef6a9205c67e
 a
 1src/main/java/com/example/dao/OrderDetailDAO.java,4\8\481e271b0f11d149f272d2a57a44cbd2ebb506d5
 i
@@ -33,8 +29,6 @@ t
 Dsrc/main/java/com/example/rest/controller/ProductRestController.java,0\0\005202f212dd30cb3ec546d5538db4638078eebd
 b
 2src/main/java/com/example/dao/CommentImageDao.java,b\3\b3cbcbfda081c85ba5c9256017aed34493bffda0
-k
-;src/main/java/com/example/controller/ProductController.java,8\8\88b0a68a5a6595e4173f654d6fd11eeb8284d839
 h
 8src/main/java/com/example/controller/HomeController.java,5\1\512e483a160930867006acb89acbe98b485ce8f7
 g
@@ -55,10 +49,6 @@ Z
 *src/main/java/com/example/entity/Role.java,f\3\f38e7011811876dd5c8b6e4eef8448df851b6210
 b
 2src/main/java/com/example/service/RateService.java,a\c\acfe4799a8883f4cefae50f2dec0288cd8ca6473
-e
-5src/main/java/com/example/service/ProductService.java,8\6\86b6e6974ba0edac461fb7837be5a87b35c2bde2
-c
-3src/main/java/com/example/service/OrderService.java,5\7\570c89f5b320a9cb4f866bd66b331c962a4995a2
 j
 :src/main/java/com/example/service/CommentImageService.java,3\6\3617960fb6cbdae78e3c6f4161d4f459ff3f8713
 f

@@ -1,2 +1,3 @@
-package com.example.entity;public class ForgetPassword {
+package com.example.entity;
+public class ForgetPassword {
 }

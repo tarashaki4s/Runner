@@ -1,2 +1,3 @@
-package com.example.DTO;public class ResetPassDTO {
+package com.example.DTO;
+public class ResetPassDTO {
 }
