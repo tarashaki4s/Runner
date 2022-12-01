@@ -10,11 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-<<<<<<< HEAD
-import org.springframework.http.ResponseEntity;
-=======
 import org.springframework.data.domain.Sort;
->>>>>>> product_filter
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +39,7 @@ public class ProductController {
 		int page = 0;
 		int pageSize = 20;
 		boolean SORT_BY_DESC = false;
-		var rates = rateService.findByProductDESC(id, PageRequest.of(page,pageSize));
+		var rates = rateService.findByProductDESC(id, PageRequest.of(page, pageSize));
 		model.addAttribute("rates", rates);
 		model.addAttribute("product", sp);
 		return "home/detailproduct";
@@ -53,14 +49,14 @@ public class ProductController {
 	public String product(Model model,
 						  @RequestParam("page") Optional<Integer> page,
 						  @RequestParam("category") Optional<Integer> categoryId,
-	 					  @RequestParam("sortType") Optional<Integer> sortType) {
+						  @RequestParam("sortType") Optional<Integer> sortType) {
 
 		Pageable pageable = PageRequest.of(page.orElse(0), 8);
 		Page<Product> list = Page.empty();
 
-		if(!sortType.isEmpty()) {
-			if(sortType.get() == ProductSortType.NEWEST)  {
-				pageable = PageRequest.of(page.orElse(0), 8, Sort.by(Sort.Direction.DESC, "createDate"));
+		if (!sortType.isEmpty()) {
+			if (sortType.get() == ProductSortType.NEWEST) {
+				pageable = PageRequest.of(page.orElse(0), 8, Sort.by(Sort.Direction.DESC, "Create_date"));
 			} else if (sortType.get() == ProductSortType.BESTSELLER) {
 				pageable = PageRequest.of(page.orElse(0), 8, Sort.by(Sort.Direction.DESC, "Quantitysold"));
 			} else if (sortType.get() == ProductSortType.PRICE_ASCENDING) {
@@ -71,7 +67,7 @@ public class ProductController {
 			model.addAttribute("sortType", sortType.get());
 		}
 
-		if(categoryId.isEmpty()) {
+		if (categoryId.isEmpty()) {
 			list = productService.findAll(pageable);
 		} else {
 			list = productService.findSanPhamByLSP(categoryId.get(), pageable);
@@ -89,12 +85,4 @@ public class ProductController {
 
 		return "home/product";
 	}
-
-
-
-<<<<<<< HEAD
-
 }
-=======
-}
->>>>>>> product_filter

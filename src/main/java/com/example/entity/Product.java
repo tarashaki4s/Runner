@@ -61,9 +61,6 @@ public class Product implements Serializable{
 	
 	@Column(name="Describe")
 	private String Describe;
-
-	@Column(name="Create_date")
-	private Date createDate;
 	
 	@ManyToOne
     @JoinColumn(name = "Categoryid")
