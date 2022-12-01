@@ -63,14 +63,14 @@
         <div class="col-md-3 col-sm-12 col-xs-12 sidebar-fix">
             <div class="list-group" id="list-tab" role="tablist">
                 <div class="group-menu">
-                    <div class="layered_subtitle dropdown-filter"><span>Sản phẩm</span><span
+                    <div class="layered_subtitle dropdown-filter"><b>Nhãn hiệu</b><span
                             class="icon-control"></span></div>
                     <ul class="sanpham" style="display: block;list-style-type:none;">
 
-                        <li th:each="category: ${categories}">
+                        <li th:each="i: ${categories}">
                             <span></span>
-                            <a th:href="@{/product/list(category=${category.Id})}" th:text="${category.Name}"
-                               class="text-decoration-none"></a>
+                            <a th:href="@{/product/list(category=${i.Id})}" th:text="${i.Name}"
+                               th:class="${i.Id == category ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}"></a>
                         </li>
                         <a th:href="@{/product/list}" th:text="${'Tất cả sản phẩm'}" class="text-decoration-none"></a>
 
@@ -78,6 +78,13 @@
                     </ul>
                 </div>
             </div>
+
+            <div class="input-group">
+                <input type="text" placeholder="Tên sản phẩm"/>
+                <button class="btn btn-outline-secondary" type="button">Tìm</button>
+            </div>
+            </div>
+
             <div class="block_content">
                 <!-- ./filter brand -->
 
@@ -138,24 +145,21 @@
         </div>
         <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="wrap-collection-title row">
-                <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="col-md-4 col-sm-12 col-xs-12">
                     <h1 class="title">
                         Tất cả sản phẩm
                     </h1>
                     <div class="alert-no-filter"></div>
                 </div>
-                <div class="col-md-4 d-sm-none d-md-block d-none d-sm-block" style="float: left">
+                <div class="col-md-8 d-sm-none d-md-block d-none d-sm-block" style="float: left">
                     <div class="option browse-tags">
                       <span class="custom-dropdown custom-dropdown--grey">
-                          <form action="" method="post">
-                              <button type="button" class="btn btn-outline-primary">Mới nhất</button>
-                              <button type="button" class="btn btn-outline-primary">Bán chạy</button>
-
-                                <select class="sort-by custom-dropdown__select">
-                                  <option value="price-ascending" th:value="asc">Giá: Thấp đến cao</option>
-                                  <option value="price-ascending" th:value="desc">Giá: Cao đến thấp</option>
-                                </select>
-                         </form>
+                            <a th:href= "@{(${category != null}? '/product/list?sortType=1&category=' + ${category} : '/product/list?sortType=1')}" th:class="${sortType == 1 ? 'btn btn-secondary text-light' : 'btn btn-outline-secondary'}">Mới nhất</a>
+                            <a th:href= "@{(${category != null}? '/product/list?sortType=2&category=' + ${category} : '/product/list?sortType=2')}" th:class="${sortType == 2 ? 'btn btn-secondary text-light' : 'btn btn-outline-secondary'}">Bán chạy</a>
+                            <select name="sortByPrice"  onchange="document.location.href=this.value" class="sort-by custom-dropdown__select">
+                                <option th:value="@{(${category != null}? '/product/list?sortType=3&category' + ${category} : '/product/list?sortType=3')}" th:selected="${sortType == 3}">Giá: Thấp đến cao</option>
+                                <option th:value="@{(${category != null}? '/product/list?sortType=4&category' + ${category} : '/product/list?sortType=4')}" th:selected="${sortType == 4}">Giá: Cao đến thấp</option>
+                            </select>
                       </span>
                     </div>
                 </div>
@@ -183,8 +187,9 @@
                                 </a>
                             </div>
                             <div class="pro-price">
-                                <p class="">$[[${p.price}]]</p>
+                                <p class="">[[${p.price}]] đ</p>
                             </div>
+                            <p class="text-sm">Đã bán: [[${p.Quantitysold}]]</p>
                         </div>
                     </div>
                 </div>
@@ -192,18 +197,17 @@
             <div class="sortpagibar pagi clearfix text-center">
                 <div id="pagination" class="clearfix">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <a class="page-node" href="/product/list?page=0">1</a>
-                        <a class="page-node" href="/product/list?page=1">2</a>
-                        <a class="page-node" href="/product/list?page=2">3</a>
-                        <a class="page-node" href="/product/list?page=3">4</a>
-                        <a class="page-node" href="/product/list?page=4">5</a>
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                             x="0px"
-                             y="0px" viewBox="0 0 31 10"
-                             style="enable-background:new 0 0 31 10; width: 31px; height: 10px;"
-                             xml:space="preserve">
-                  <polygon points="31,5 25,0 25,4 0,4 0,6 25,6 25,10 "></polygon>
-                </svg>
+                        <a th:each="page: ${#numbers.sequence(0, totalPage-1)}" th:class="${currentPage==page ?'font-weight-bold' : 'page-node'}"
+                           th:href="@{( ${category != null}? '/product/list?page=' + ${page} + '&sortType=' + ${sortType != null ? sortType : '0'} + '&category=' + ${category}
+                           : '/product/list?page=' + ${page} + '&sortType=' + ${sortType != null ? sortType : '0'} )}" th:text="${page + 1}"></a>
+
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         x="0px"
+                                         y="0px" viewBox="0 0 31 10"
+                                         style="enable-background:new 0 0 31 10; width: 31px; height: 10px;"
+                                         xml:space="preserve">
+                              <polygon points="31,5 25,0 25,4 0,4 0,6 25,6 25,10 "></polygon>
+                            </svg>
                         </a>
                     </div>
                 </div>
