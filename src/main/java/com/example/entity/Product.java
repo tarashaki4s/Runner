@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Table(name="Products")
 public class Product implements Serializable{
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 Integer Id;
+	Integer Id;
 	
 	@Column(name="Name")
 	private String Name;
@@ -61,6 +61,9 @@ public class Product implements Serializable{
 	
 	@Column(name="Describe")
 	private String Describe;
+
+	@Column(name="Create_date")
+	private Date createDate;
 	
 	@ManyToOne
     @JoinColumn(name = "Categoryid")
