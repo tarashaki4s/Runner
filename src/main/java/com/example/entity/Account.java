@@ -40,13 +40,18 @@ public class Account implements Serializable {
   @Column(name = "Gender")
   private Boolean Gender;
 
+  @Column(name = "Verification_code")
+  private String verificationCode;
 
   @Column(name = "Active")
-  private Boolean Active;
+  private Boolean isActive;
 
-  @JsonIgnore
-  @OneToMany(mappedBy = "account")
-  List<Order> orders;
+  @Column(name = "Reset_password_token")
+  private String resetPasswordToken;
+
+//  @JsonIgnore
+//  @OneToMany(mappedBy = "account")
+//  List<Order> orders;
 
   @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
   @ManyToMany(fetch = FetchType.EAGER)
@@ -59,9 +64,7 @@ public class Account implements Serializable {
   public Account(String username, String email, String fullName, Boolean gender, Boolean active, String encode) {
   }
 
-  @JsonIgnore
-  @OneToMany(mappedBy = "account")
-  List<Authority> authorities;
+
 
   @JsonIgnore
   @OneToMany(mappedBy = "account")

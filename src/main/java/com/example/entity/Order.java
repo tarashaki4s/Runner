@@ -41,9 +41,9 @@ public class Order implements Serializable{
 	@Column(name = "Createdate")
 	Date CreateDate = new Date();
 
-	@ManyToOne
-	@JoinColumn(name = "Username")
-	Account account;
+//	@ManyToOne
+//	@JoinColumn(name = "AccountId")
+//	Account account;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "order")

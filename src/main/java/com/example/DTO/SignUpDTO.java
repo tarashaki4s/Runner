@@ -12,7 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class SignUpDTO {
   @NotBlank
-  private String userName;
+  private String username;
 
   @NotBlank
   @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "wrong format, should be abc@abc.com ")

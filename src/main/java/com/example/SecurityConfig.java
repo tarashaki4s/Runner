@@ -61,7 +61,6 @@ public class SecurityConfig {
   @Bean
   public DaoAuthenticationProvider authenticationProvider() {
     DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-
     authProvider.setUserDetailsService(userDetailsService);
     authProvider.setPasswordEncoder(getPasswordEncoder());
     return authProvider;
@@ -92,28 +91,36 @@ public class SecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable()
         .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-        .authorizeRequests().antMatchers("/home/**", "/layout/**").permitAll()
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS).and()
+        .authorizeRequests().antMatchers("/admin/**").hasAnyRole( "ROLE_ADMIN")
+        .antMatchers("/home/**").permitAll()
 //				.antMatchers("/js/**","/css/**","/images/**","assets/images/**","hinhanhcustom/**","fints.quicksand/**","plugins/**").permitAll()
         .antMatchers("/order/**").authenticated()
-        .antMatchers("/admin/**").hasAnyRole("ROLE_USER", "ROLE_ADMIN")
 //				.antMatchers("/rest/authorities","/rest/accounts/create").hasRole("DIRE").anyRequest().permitAll()
-        .antMatchers("/auth/**").permitAll();
-    http.formLogin()
-        // Khi gặp địa chỉ URL này
-        .loginPage("/security/login/form")
-        // Đưa vào địa chỉ này để xử lý URL
-        .loginProcessingUrl("/security/login")
-        // False để trở lại trang người dùng vừa yêu cầu
-        // True sẽ tiếp tục quay trở lại địa chỉ URL của trang đăng nhập
-        .defaultSuccessUrl("/security/login/success", false).failureUrl("/security/login/error");
-
+        .antMatchers("/security/**").permitAll();
+//    http.formLogin()
+//        // Khi gặp địa chỉ URL này
+//        .loginPage("/security/login/form")
+//        // Đưa vào địa chỉ này để xử lý URL
+//        .loginProcessingUrl("/security/login")
+//        // False để trở lại trang người dùng vừa yêu cầu
+//        // True sẽ tiếp tục quay trở lại địa chỉ URL của trang đăng nhập
+//        .defaultSuccessUrl("/security/home", true).failureUrl("/security/login/error");
     http.authenticationProvider(authenticationProvider());
+    http.rememberMe().tokenValiditySeconds(86400);
     http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     return http.build();
   }
+//  @Autowired
+//  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//
+//    auth.inMemoryAuthentication()
+//        .withUser("user").password("password").roles("USER")
+//        .and()
+//        .withUser("admin").password("password").roles("ADMIN");
+//  }
 
-  // Cho phép truy xuất REST API từ bên ngoài (doman khác)
+  // Cho phép truy xuất REST API từ bên ngoài (domain khác)
 //	@Override
 //	public void configure(WebSecurity web) throws Exception {
 //		web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");

@@ -9,14 +9,20 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
   @Autowired
   AccountDAO accountDAO;
   @Override
+  @Transactional
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     Account acc = accountDAO.findByUsername(username)
         .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
+    if(!acc.getIsActive()){
+      System.out.println("Your accout is verify");
+    }
 
     return UserDetailService.build(acc);
   }

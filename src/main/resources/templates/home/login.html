@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
   <meta charset="utf-8">
@@ -49,7 +50,7 @@
 	            	</div>
 
                     <div class="formsgetpassword">
-                            <p id="quenmk">Quên mật khẩu?</p> hoặc <a th:href="@{/home/register}">Đăng kí</a>
+                            <a th:href="@{/home/forgetpassword}">Quên mật khẩu?</a> hoặc <a th:href="@{/home/register}">Đăng kí</a>
                       </div>
                        
                     </div>
