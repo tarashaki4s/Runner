@@ -16,7 +16,7 @@ app.controller("ctrl",function ($scope,$http) {
 			this.saveToLocalStorage();
 		}
 		else{	
-			$http.get(`/rest/products/${id}`).then(resp =>{
+                $http.get(`/rest/products/${id}`).then(resp =>{
 				resp.data.qty=1;
 				this.items.push(resp.data);
 				this.saveToLocalStorage();
@@ -80,12 +80,11 @@ app.controller("ctrl",function ($scope,$http) {
    $scope.order = {
         createDate: new Date(),
         address: "",
-        account: { username: $("#username").text() },
+        account: { id: $("#account_id").text() },
         get orderDetails() {
             return $scope.cart.items.map(item => {
                 return {
                     product: { id: item.id },
-                    price: item.price,
                     quantity: item.qty
                 }
             });

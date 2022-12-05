@@ -19,8 +19,7 @@ app.controller("product-ctrl", function($scope, $http){
 	
 	$scope.reset = function(){
 		$scope.form = {
-			
-			image:'1.jpg',
+			image1:"1.jpg",
 			active: true,
 		};
 	}
@@ -61,36 +60,17 @@ app.controller("product-ctrl", function($scope, $http){
 			console.log("Error", error);
 		});
 	}
-	
-	$scope.imageChanged = function(files){
-		var data = new FormData();
-		data.append('file', files[0]);
-		$http.post('/rest/upload/images', data,{
-			transformRequest: angular.identity,
-			headers:{'Content-Type':undefined}
-		}).then(resp => {
-			$scope.form.image1 = resp.data.name;
-			alert(resp.data.name);
-		}).catch(error => {
-			alert("Lỗi upload hình ảnh");
-			console.log("Error", error);
-		})
+
+	$scope.imageChanged = function(event){
+		$scope.selectedFile = event.target.files[0];
+		$scope.form.image1 = $scope.selectedFile.name;
+
 	}
-	$scope.imageChanged2 = function(files){
-		var data = new FormData();
-		data.append('file', files[0]);
-		$http.post('/rest/upload/images', data,{
-			transformRequest: angular.identity,
-			headers:{'Content-Type':undefined}
-		}).then(resp => {
-			$scope.form.image2 = resp.data.name;
-			alert(resp.data.name);
-		}).catch(error => {
-			alert("Lỗi upload hình ảnh");
-			console.log("Error", error);
-		})
+	$scope.imageChanged2 = function(event){
+		$scope.selectedFile2 = event.target.files[0];
+		$scope.form.image2 = $scope.selectedFile2.name;
 	}
-	
+
 	$scope.pager = {
 		page: 0,
 		size: 10,

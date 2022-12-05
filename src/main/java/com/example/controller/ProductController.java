@@ -85,4 +85,15 @@ public class ProductController {
 
 		return "home/product";
 	}
+
+//	@GetMapping("/product/findByPrice")
+//	public String findByPrice(Model model,
+//								@RequestParam("page") Optional<Integer> page,
+//								@RequestParam("price") Integer  price){
+//		Pageable pageable = PageRequest.of(page.orElse(0), 8);
+//		Page<Product> pageProduct=productService.findPrice(price,pageable);
+//		model.addAttribute()
+//
+//		return "home/product";
+//	}
 }

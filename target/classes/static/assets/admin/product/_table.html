@@ -21,6 +21,7 @@
                 <th>Image2</th>
                 <th>Amount</th>
                 <th>Color</th>
+                <th>Create Date</th>
                 <th>Quantitysold</th>
                 <th>Available?</th>
                 <th></th>
@@ -38,7 +39,7 @@
                 <td>{{item.color}}</td>
                 <td>{{item.create_date}}</td>
                 <td>{{item.quantitysold}}</td>
-                <td>{{item.available?'No':'Yes'}}</td>
+                <td>{{item.active?'Yes':'No'}}</td>
                 <td>
                     <div class="btn-group btn-group-xs">
                         <button ng-click="edit(item)" data-toggle="tab" data-target="#edit" class="btn btn-warning glyphicon glyphicon-edit"></button>
