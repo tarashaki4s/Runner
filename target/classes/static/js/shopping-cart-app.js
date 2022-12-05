@@ -1,15 +1,17 @@
 const app = angular.module("shopping-cart-app",[])
 app.controller("ctrl",function ($scope,$http) {
+
     // Mananer shopping-cart
     $scope.cart = {
+        products : [],
         items:[],
+
         //Add item
         add(id){
 	alert("Sản phẩm đã thêm giỏ hàng thành công")
 
 		var item=this.items.find(item => item.id==id);
 		if(item){
-				a
 			item.qty++;
 			this.saveToLocalStorage();
 		}
@@ -57,10 +59,23 @@ app.controller("ctrl",function ($scope,$http) {
         loadFromLocalStorage(){
             var json = localStorage.getItem("cart");
             this.items = json ? JSON.parse(json):[];
+        },
+
+        search(){
+            var keyword = angular.copy($scope.form.keyword);
+            $http.get('/rest/products/search?name='+keyword).then(resp => {
+                this.products = resp.data;
+            }).catch(error => {
+                console.log("Error", error);
+            });
         }
     }
 
     $scope.cart.loadFromLocalStorage();
+
+
+
+
 
    $scope.order = {
         createDate: new Date(),

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.example.dao.ProductDAO;
+import com.example.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,9 @@ public class OrderServiceImpl implements OrderService{
     @Autowired
     OrderDetailDAO detailDAO;
 
+    @Autowired
+    ProductDAO productDAO;
+
     @Override
     public Order create(JsonNode orderData) {
         ObjectMapper mapper = new ObjectMapper();
@@ -35,9 +40,14 @@ public class OrderServiceImpl implements OrderService{
         List<OrderDetail> details = mapper.convertValue(orderData.get("orderDetails"),type)
                 .stream().peek(d -> d.setOrder(order)).collect(Collectors.toList());
         detailDAO.saveAll(details);
-
         return order;
     }
+
+//    public Product updateProduct(Product product) {
+//        product.setAmount(product.getAmount()-1);
+//        product.setQuantitysold(product.getQuantitysold()+1);
+//        return product;
+//    }
 
     @Override
     public Order findById(Long id) {
@@ -47,6 +57,18 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public List<Order> findByUsername(String username) {
         return oDao.findByUsername(username);
+    }
+
+    @Override
+    public List<Order> findByStatus() {
+        return oDao.findByStatus();
+    }
+
+    @Override
+    public Order updateStatus(Order order) {
+        // TODO Auto-generated method stub
+        order.setStatus(true);
+        return oDao.save(order);
     }
 
 }

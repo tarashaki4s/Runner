@@ -9,4 +9,7 @@ import java.util.List;
 public interface OrderDAO extends JpaRepository<Order,Long> {
     @Query(value=("SELECT o FROM Order o WHERE o.account.username=?1"),nativeQuery = true)
     List<Order> findByUsername(String username);
+
+    @Query("SELECT o FROM Order o WHERE o.status=false")
+    List<Order> findByStatus();
 }

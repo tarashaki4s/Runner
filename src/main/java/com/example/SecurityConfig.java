@@ -96,6 +96,8 @@ public class SecurityConfig {
         .antMatchers("/home/**").permitAll()
 //				.antMatchers("/js/**","/css/**","/images/**","assets/images/**","hinhanhcustom/**","fints.quicksand/**","plugins/**").permitAll()
         .antMatchers("/order/**").authenticated()
+
+        
 //				.antMatchers("/rest/authorities","/rest/accounts/create").hasRole("DIRE").anyRequest().permitAll()
         .antMatchers("/security/**").permitAll();
 //    http.formLogin()

@@ -62,7 +62,7 @@
                   </a>
                 </div>
                 <div class="pro-price">
-                  <p class="" >$[[${p.price}]]</p>
+                  <p class="" >[[${p.price}]]đ</p>
                 </div>
               </div>
             </div>
@@ -136,151 +136,25 @@
       </div>
       <div class="container product" style="width: 100%;margin: auto;">
         <div class="owl-carousel owl-theme owl-product-setting">
-          <div class="item">
-            <div class="">
-              <div class="product-block">
+          <div class="item" th:each="p:${newitems}">
+            <div class="" >
+              <div class="product-block" >
                 <div class="product-img fade-box">
-                  <a href="detailproduct.html" title="Adidas Ultraboost W" class="img-resize">
-                    <img src="/images/shoes/4-4.jpg" alt="Adidas Ultraboost W"
+                  <a th:href="@{/product/detail/${p.id}|}"  class="img-resize">
+                    <img th:src="@{|/assets/images/${p.image1}|}" alt="Adidas Ultraboost W"
                       class="lazyloaded">
-                    <img src="/images/shoes/4.jpg" alt="Adidas Ultraboost W" class="lazyloaded">
+                    <img th:src="@{|/assets/images/${p.image2}|}" alt="Adidas Ultraboost W" class="lazyloaded">
                   </a>
                  
                 </div>
                 <div class="product-detail clearfix">
                   <div class="pro-text">
                     <a style=" color: black;
-                           font-size: 14px;text-decoration: none;" href="#" title="Adidas Ultraboost W" inspiration pack>
-                      Adidas Ultraboost W
+                           font-size: 14px;text-decoration: none;" href="#" title="Adidas Ultraboost W" inspiration pack th:text="${p.name}">
                     </a>
                   </div>
                   <div class="pro-price">
-                    <p class="">5,300,000₫</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="">
-              <div class="product-block">
-                <div class="product-img fade-box">
-                  <a href="detailproduct.html" title="Adidas Ultraboost W" class="img-resize">
-                    <img src="/images/shoes/3-3.jpg" alt="Adidas Ultraboost W"
-                      class="lazyloaded">
-                    <img src="/images/shoes/3.jpg" alt="Adidas Ultraboost W" class="lazyloaded">
-                  </a>
-                 
-                </div>
-                <div class="product-detail clearfix">
-                  <div class="pro-text">
-                    <a style=" color: black;
-                           font-size: 14px;text-decoration: none;" href="#" title="Adidas Ultraboost W" inspiration pack>
-                      Adidas Ultraboost W
-                    </a>
-                  </div>
-                  <div class="pro-price">
-                    <p class="">5,300,000₫</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="">
-              <div class="product-block">
-                <div class="product-img fade-box">
-                  <a href="detailproduct.html" title="Adidas Ultraboost W" class="img-resize">
-                    <img src="/images/shoes/2-2.jpg" alt="Adidas Ultraboost W"
-                      class="lazyloaded">
-                    <img src="/images/shoes/2.jpg" alt="Adidas Ultraboost W" class="lazyloaded">
-                  </a>
-                 
-                </div>
-                <div class="product-detail clearfix">
-                  <div class="pro-text">
-                    <a style=" color: black;
-                           font-size: 14px;text-decoration: none;" href="#" title="Adidas Ultraboost W" inspiration pack>
-                      Adidas Ultraboost W
-                    </a>
-                  </div>
-                  <div class="pro-price">
-                    <p class="">5,300,000₫</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="">
-              <div class="product-block">
-                <div class="product-img fade-box">
-                  <a href="detailproduct.html" title="Adidas Ultraboost W" class="img-resize">
-                    <img src="/images/shoes/1-1.jpg" alt="Adidas Ultraboost W"
-                      class="lazyloaded">
-                    <img src="/images/shoes/1.jpg" alt="Adidas Ultraboost W" class="lazyloaded">
-                  </a>
-                 
-                </div>
-                <div class="product-detail clearfix">
-                  <div class="pro-text">
-                    <a style=" color: black;
-                           font-size: 14px;text-decoration: none;" href="#" title="Adidas Ultraboost W" inspiration pack>
-                      Adidas Ultraboost W
-                    </a>
-                  </div>
-                  <div class="pro-price">
-                    <p class="">5,300,000₫</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="">
-              <div class="product-block">
-                <div class="product-img fade-box">
-                  <a href="detailproduct.html" title="Adidas Ultraboost W" class="img-resize">
-                    <img src="/images/shoes/5-5.jpg" alt="Adidas Ultraboost W"
-                      class="lazyloaded">
-                    <img src="/images/shoes/5.jpg" alt="Adidas Ultraboost W" class="lazyloaded">
-                  </a>
-                 
-                </div>
-                <div class="product-detail clearfix">
-                  <div class="pro-text">
-                    <a style=" color: black;
-                           font-size: 14px;text-decoration: none;" href="#" title="Adidas Ultraboost W" inspiration pack>
-                      Adidas Ultraboost W
-                    </a>
-                  </div>
-                  <div class="pro-price">
-                    <p class="">5,300,000₫</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="">
-              <div class="product-block">
-                <div class="product-img fade-box">
-                  <a href="detailproduct.html" title="Adidas Ultraboost W" class="img-resize">
-                    <img src="/images/shoes/6-6.jpg" alt="Adidas Ultraboost W"
-                      class="lazyloaded">
-                    <img src="/images/shoes/6.jpg" alt="Adidas Ultraboost W" class="lazyloaded">
-                  </a>
-                 
-                </div>
-                <div class="product-detail clearfix">
-                  <div class="pro-text">
-                    <a style=" color: black;
-                           font-size: 14px;text-decoration: none;" href="#" title="Adidas Ultraboost W" inspiration pack>
-                      Adidas Ultraboost W
-                    </a>
-                  </div>
-                  <div class="pro-price">
-                    <p class="">5,300,000₫</p>
+                    <p class="">[[${p.price}]]₫</p>
                   </div>
                 </div>
               </div>
@@ -429,7 +303,7 @@
   <script async defer crossorigin="anonymous" src="/plugins/sdk.js"></script>
   <script src="/plugins/jquery-3.4.1/jquery-3.4.1.min.js"></script>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-  <script src="/plugins/bootstrap/popper.min.js"></script>
+<!--  <script src="/plugins/bootstrap/popper.min.js"></script>-->
   <script src="/plugins/bootstrap/bootstrap.min.js"></script>
   <script src="/plugins/owl.carousel/owl.carousel.min.js"></script>
   <script src="/js/home.js"></script>

@@ -108,9 +108,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" th:href="@{/home/contact}">LIÊN HỆ</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/home/changepassword}">ĐỔI MẬT KHẨU</a>
-                            </li>
                         </ul>
                     </div>
 
@@ -118,7 +115,7 @@
             </div>
             <div id="offcanvas-flip" uk-offcanvas="flip: true; overlay: true">
                 <div class="uk-offcanvas-bar" style="    background: white;
-                width: 350px;">
+                width: 350px;" th:fragment="shopping-cart">
 
                     <button class="uk-offcanvas-close" style="color:#272727" type="button" uk-close></button>
 
@@ -133,20 +130,33 @@
                                 <input type="hidden" name="type" value="product">
                                 <input required="" id="inputSearchAuto" name="q" maxlength="40" autocomplete="off"
                                        class="searchinput input-search search-input" type="text" size="20"
-                                       placeholder="Tìm kiếm sản phẩm...">
+                                       placeholder="Tìm kiếm sản phẩm..." ng-model="form.keyword" ng-change="cart.search()">
                             </div>
-                            <button type="submit" class="btn-search btn" id="search-header-btn">
-                                <i style="font-weight:bold" class="fas fa-search"></i>
-                            </button>
                         </form>
-                        <div id="ajaxSearchResults" class="smart-search-wrapper ajaxSearchResults"
-                             style="display: none">
-                            <div class="resultsContent"></div>
+                        <div>
+
+                            <table id="cart-view">
+                                <tbody>
+                                <tr class="item_1"  ng-repeat="item in cart.products">
+                                    <td class="img"><a th:href="@{|/product/detail/{{item.id}}|}" title="Nike Air Max 90 Essential &quot;Grape&quot;"><img
+                                            src="/assets/images/{{item.image1}}" alt="/products/nike-air-max-90-essential-grape"></a></td>
+                                    <td>
+                                        <a class="pro-title-view" style="color: #272727" th:href="@{|/product/detail/{{item.id}}|}"
+                                           title="Nike Air Max 90 Essential &quot;Grape&quot;">{{item.name}}</a>
+                                        <span class="variant">{{item.color}}/{{item.size}}</span>
+                                        <span class="pro-price-view">{{item.price}}đ</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+
                         </div>
+
                     </div>
                 </div>
             </div>
-            <div id="offcanvas-flip2" uk-offcanvas="flip: true; overlay: true">
+            <div id="offcanvas-flip2" uk-offcanvas="flip: true; overlay: true" >
                 <div class="uk-offcanvas-bar" style="    background: white;
                 width: 350px;" th:fragment="shopping-cart">
 
@@ -161,23 +171,18 @@
                         <div class="cart-view clearfix">
                             <table id="cart-view">
                                 <tbody>
-                                <tr class="item_1" ng-repeat="item in cart.items">
+                                <tr class="item_1"  ng-repeat="item in cart.items">
                                     <td class="img"><a href="" title="Nike Air Max 90 Essential &quot;Grape&quot;"><img
-                                            src="/assets/images/{{item.image1}}"
-                                            alt="/products/nike-air-max-90-essential-grape"></a></td>
+                                            src="/assets/images/{{item.image1}}" alt="/products/nike-air-max-90-essential-grape"></a></td>
                                     <td>
                                         <span style="font-size: 8px;">{{item.id}}</span>
                                         <a class="pro-title-view" style="color: #272727" href=""
                                            title="Nike Air Max 90 Essential &quot;Grape&quot;">{{item.name}}</a>
                                         <span class="variant">{{item.color}}/{{item.size}}</span>
-                                        <span class="pro-quantity-view"><input ng-change="cart.saveToLocalStorage()"
-                                                                               min=0 ng-model="item.qty" type="number"
-                                                                               style="width: 25px; border: #ededed; text-align: center;"></span>
+                                        <span class="pro-quantity-view"><input ng-change="cart.saveToLocalStorage()" min=0 ng-model="item.qty" type="number"  style="width: 25px; border: #ededed; text-align: center;"></span>
                                         <span class="pro-price-view">{{item.price}}đ</span>
-                                        <span class="remove_link remove-cart"><a href=""
-                                                                                 ng-click="cart.remove(item.id)"><i
-                                                style="color: #272727;"
-                                                class="fas fa-times"></i></a></span>
+                                        <span class="remove_link remove-cart"><a href="" ng-click="cart.remove(item.id)"><i style="color: #272727;"
+                                                                                                                            class="fas fa-times"></i></a></span>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -190,10 +195,8 @@
                                     <td class="text-right" id="total-view-cart">${{cart.amount}}đ</td>
                                 </tr>
                                 <tr>
-                                    <td class="distance-td"><a href="" class="linktocart button dark">Xem giỏ hàng</a>
-                                    </td>
-                                    <td><a th:href="@{/order/checkout}" class="linktocheckout button dark">Thanh
-                                        toán</a></td>
+                                    <td class="distance-td"><a href="" class="linktocart button dark">Xem giỏ hàng</a></td>
+                                    <td><a th:href="@{/order/checkout}" class="linktocheckout button dark" >Thanh toán</a></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -205,8 +208,8 @@
                 </div>
             </div>
 
-            <div class="icon-ol nav-item dropdown">
-                <a style="color: #272727" nav-link dropdown-toggle href="#" id="navbardrop" data-toggle="dropdown">
+            <div class="icon-ol nav-item dropdown" >
+                <a style="color: #272727"  nav-link dropdown-toggle  href="#" id="navbardrop" data-toggle="dropdown">
 
                     <i class="fas fa-user-alt"></i>
                 </a>
@@ -226,8 +229,7 @@
                 <a style="color: #272727" href="#" uk-toggle="target: #offcanvas-flip2">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
-                <button class="navbar-toggler" type="button" uk-toggle="target: #offcanvas-flip1"
-                        data-target="#navbarNav"
+                <button class="navbar-toggler" type="button" uk-toggle="target: #offcanvas-flip1" data-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

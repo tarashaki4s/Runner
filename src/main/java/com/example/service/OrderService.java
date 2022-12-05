@@ -13,4 +13,8 @@ public interface OrderService {
 
     List<Order> findByUsername(String username);
 
+    List<Order> findByStatus();
+
+    Order updateStatus(Order order);
+
 }

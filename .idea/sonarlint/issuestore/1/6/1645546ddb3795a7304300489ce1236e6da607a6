@@ -1,0 +1,8 @@
+
+o	java:S116-"URename this field "CreateDate" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Å™ñ™üÿÿÿÿ
+D
+java:S19485")Make "orderDetails" private or transient.(øîÇ´øÿÿÿÿ
+q
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(šÿû8ìéš€Ê0
+v
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(Ë´Ô²üÿÿÿÿ8íéš€Ê0
