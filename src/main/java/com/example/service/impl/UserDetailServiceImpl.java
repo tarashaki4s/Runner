@@ -21,7 +21,10 @@ public class UserDetailServiceImpl implements UserDetailsService {
     Account acc = accountDAO.findByUsername(username)
         .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
     if(!acc.getIsActive()){
-      System.out.println("Your accout is verify");
+      System.out.println("Your accout is not verify! Please check your email");
+
+    }else{
+
     }
 
     return UserDetailService.build(acc);

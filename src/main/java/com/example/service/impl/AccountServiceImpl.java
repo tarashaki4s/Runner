@@ -9,6 +9,7 @@ import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -94,11 +95,13 @@ public class AccountServiceImpl implements AccountService {
       throw new UsernameNotFoundException("Could not find any customer with the email " + email);
     }
   }
-  public void changePassword(String oldPassword,String newPassword){
+  public void changePassword(String userName,String currentPassword,String newPassword)throws UsernameNotFoundException{
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     String encodedPassword = passwordEncoder.encode(newPassword);
-    UserDetailService userDetails = (UserDetailService) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    Account account = adao.findByUserNameAndPassword(userDetails.getUsername(),oldPassword);
+    Account account = adao.findUserByUserName(userName);
+    if(account.getPassword().equals(currentPassword)){
+      throw new UsernameNotFoundException("Your current password is invalid!");
+    }
     account.setPassword(encodedPassword);
     adao.save(account);
   }
@@ -112,7 +115,6 @@ public class AccountServiceImpl implements AccountService {
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     String encodedPassword = passwordEncoder.encode(newPassword);
     account.setPassword(encodedPassword);
-
     account.setResetPasswordToken(null);
     adao.save(account);
   }

@@ -37,36 +37,33 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/product/list}">BỘ SƯU TẬP</a>
                         </li>
-                        <th:block th:if="${#request.remoteUser}">
+                    <th:block th:if="${#request.remoteUser}">
+                        <th:block th:if="${#request.isUserInRole('ROLE_USER') }">
                             <li class="nav-item">
-                                <a class="nav-link" th:href="@{/order/list}">GIỎ HÀNG</a>
+                                <a class="nav-link" th:href="@{/order/list}">ĐƠN HÀNG</a>
                             </li>
-                            <!--                        <sec:authorize access="hasRole('ROLE_ADMIN')">-->
-                            <!--                            Manage Users-->
-                            <!--                        </sec:authorize>-->
-                            <!--                        <sec:authorize access="hasRole('ROLE_USER')">-->
-                            <!--                            Info User-->
-                            <!--                        </sec:authorize>-->
-                            <!--                        <th:block th:if="${#request.isUserInRole('ROLE_USER')or #request.isUserInRole('ROLE_ADMIN') }">-->
-                            <!--                            <li class="nav-item">-->
-                            <!--                                <a class="nav-link" th:href="@{/admin}">QUẢN LÍ</a>-->
-                            <!--                            </li>-->
+                        </th:block>
+                        <th:block th:if="${#request.isUserInRole('ROLE_ADMIN') }">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/admin}">QUẢN LÍ</a>
+                            </li>
 
-                            <!--                        </th:block>-->
                         </th:block>
 
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/home/introduce}">GIỚI THIỆU</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/home/blog}">BLOG</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/home/contact}">LIÊN HỆ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/home/changepassword}">ĐỔI MẬT KHẨU</a>
-                        </li>
+                    </th:block>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/home/introduce}">GIỚI THIỆU</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/home/blog}">BLOG</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/home/contact}">LIÊN HỆ</a>
+                    </li>
+                    <li class="nav-item" th:if="${#request.remoteUser}">
+                        <a class="nav-link" th:href="@{/home/changepassword}">ĐỔI MẬT KHẨU</a>
+                    </li>
                 </ul>
             </div>
             <div id="offcanvas-flip1" uk-offcanvas="flip: true; overlay: true">
@@ -108,9 +105,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" th:href="@{/home/contact}">LIÊN HỆ</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/home/changepassword}">ĐỔI MẬT KHẨU</a>
-                            </li>
                         </ul>
                     </div>
 
@@ -118,7 +112,7 @@
             </div>
             <div id="offcanvas-flip" uk-offcanvas="flip: true; overlay: true">
                 <div class="uk-offcanvas-bar" style="    background: white;
-                width: 350px;">
+                width: 350px;" th:fragment="shopping-cart">
 
                     <button class="uk-offcanvas-close" style="color:#272727" type="button" uk-close></button>
 
@@ -182,14 +176,10 @@
                                         <a class="pro-title-view" style="color: #272727" href=""
                                            title="Nike Air Max 90 Essential &quot;Grape&quot;">{{item.name}}</a>
                                         <span class="variant">{{item.color}}/{{item.size}}</span>
-                                        <span class="pro-quantity-view"><input ng-change="cart.saveToLocalStorage()"
-                                                                               min=0 ng-model="item.qty" type="number"
-                                                                               style="width: 25px; border: #ededed; text-align: center;"></span>
+                                        <span class="pro-quantity-view"><input ng-change="cart.saveToLocalStorage()" min=0 ng-model="item.qty" type="number"  style="width: 25px; border: #ededed; text-align: center;"></span>
                                         <span class="pro-price-view">{{item.price}}đ</span>
-                                        <span class="remove_link remove-cart"><a href=""
-                                                                                 ng-click="cart.remove(item.id)"><i
-                                                style="color: #272727;"
-                                                class="fas fa-times"></i></a></span>
+                                        <span class="remove_link remove-cart"><a href="" ng-click="cart.remove(item.id)"><i style="color: #272727;"
+                                                                                                                            class="fas fa-times"></i></a></span>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -202,10 +192,8 @@
                                     <td class="text-right" id="total-view-cart">${{cart.amount}}đ</td>
                                 </tr>
                                 <tr>
-                                    <td class="distance-td"><a href="" class="linktocart button dark">Xem giỏ hàng</a>
-                                    </td>
-                                    <td><a th:href="@{/order/checkout}" class="linktocheckout button dark">Thanh
-                                        toán</a></td>
+                                    <td class="distance-td"><a href="" class="linktocart button dark">Xem giỏ hàng</a></td>
+                                    <td><a th:href="@{/order/checkout}" class="linktocheckout button dark" >Thanh toán</a></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -217,14 +205,14 @@
                 </div>
             </div>
 
-            <div class="icon-ol nav-item dropdown">
-                <a style="color: #272727" nav-link dropdown-toggle href="#" id="navbardrop" data-toggle="dropdown">
+            <div class="icon-ol nav-item dropdown" >
+                <a style="color: #272727"  nav-link dropdown-toggle  href="#" id="navbardrop" data-toggle="dropdown">
 
                     <i class="fas fa-user-alt"></i>
                 </a>
                 <div class="dropdown-menu">
                     <th:block th:if="${#request.remoteUser}">
-                        <a class="dropdown-item" th:href="@{/security/logoff}">Đăng xuất</a>
+                        <a class="dropdown-item" th:href="@{/security/logoff/success}">Đăng xuất</a>
                     </th:block>
                     <th:block th:unless="${#request.remoteUser}">
                         <a class="dropdown-item" th:href="@{/home/register}">Đăng kí</a>
@@ -238,8 +226,7 @@
                 <a style="color: #272727" href="#" uk-toggle="target: #offcanvas-flip2">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
-                <button class="navbar-toggler" type="button" uk-toggle="target: #offcanvas-flip1"
-                        data-target="#navbarNav"
+                <button class="navbar-toggler" type="button" uk-toggle="target: #offcanvas-flip1" data-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -259,6 +246,5 @@
 <script src="/js/script.js"></script>
 <script src="/plugins/uikit/uikit.min.js"></script>
 <script src="/plugins/uikit/uikit-icons.min.js"></script>
-<script src="/js/shopping-cart-app.js"></script>
 </body>
 </html>

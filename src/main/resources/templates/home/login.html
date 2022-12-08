@@ -35,6 +35,7 @@
             </div>
             <div class="signin-right " id="a-sign">
                 <form th:action="@{/security/login}" method="post">
+                    <h1 style="text-align: center;">Login</h1>
                     <div class="username form-control1 ">
                         <input type="text" name="username"   placeholder="username">
                     </div>
@@ -42,7 +43,7 @@
                         <input type="password" name="password"  placeholder="Mật khẩu">  
                     </div>
                  
-                   <div class="recaptcha form-control1" th:text="${msg}"></div>
+                   <div class="recaptcha form-control1" th:text="${message}"></div>
                     <div class="submit">
                       <input class="btn" type="submit" id="dangnhap" value="Đăng Nhập">
                       <div class="form-group form-check">
