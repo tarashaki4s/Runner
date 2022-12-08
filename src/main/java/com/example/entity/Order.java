@@ -47,7 +47,8 @@ public class Order implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "Account_Id")
 	Account account;
-	
+
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "order")
 	List<OrderDetail> orderDetails;

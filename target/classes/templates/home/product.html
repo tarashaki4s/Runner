@@ -78,7 +78,31 @@
                     </ul>
                 </div>
             </div>
-
+            <div class="block_content">
+                <!-- ./filter price -->
+                <div class="list-group" id="list-tab" role="tablist">
+                    <div class="group-menu">
+                        <div class="layered_subtitle dropdown-filter"><b>Giá sản phẩm</b><span
+                                class="icon-control"></span></div>
+                        <ul class="sanpham" style="display: block;list-style-type:none;">
+                            <a th:href="@{/product/list(price=1000000)}"
+                               th:class="${price == 1000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">- 1,000,000đ</a>
+                            <br>
+                            <a th:href="@{/product/list(price=2000000)}"
+                               th:class="${price == 2000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">- 2,000,000đ</a>
+                            <br>
+                            <a th:href="@{/product/list(price=3000000)}"
+                               th:class="${price == 3000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">- 3,000,000đ</a>
+                            <br>
+                            <a th:href="@{/product/list(price=4000000)}"
+                               th:class="${price == 4000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">- 4,000,000đ</a>
+                            <br>
+                            <a th:href="@{/product/list(price=5000000)}"
+                               th:class="${price == 5000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">- 5,000,000đ</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
             </div>
 
@@ -93,11 +117,15 @@
                 <div class="col-md-8 d-sm-none d-md-block d-none d-sm-block" style="float: left">
                     <div class="option browse-tags">
                       <span class="custom-dropdown custom-dropdown--grey">
-                            <a th:href= "@{(${category != null}? '/product/list?sortType=1&category=' + ${category} : '/product/list?sortType=1')}" th:class="${sortType == 1 ? 'btn btn-secondary text-light' : 'btn btn-outline-secondary'}">Mới nhất</a>
-                            <a th:href= "@{(${category != null}? '/product/list?sortType=2&category=' + ${category} : '/product/list?sortType=2')}" th:class="${sortType == 2 ? 'btn btn-secondary text-light' : 'btn btn-outline-secondary'}">Bán chạy</a>
+                            <a th:href= "@{(${category != null}? '/product/list?sortType=1&category=' + ${category} : '/product/list?sortType=1' + '&price=' + ${price != null ? price : '0'})}"
+                               th:class="${sortType == 1 ? 'btn btn-secondary text-light' : 'btn btn-outline-secondary'}">Mới nhất</a>
+                            <a th:href= "@{(${category != null}? '/product/list?sortType=2&category=' + ${category} : '/product/list?sortType=2' + '&price=' + ${price != null ? price : '0'})}"
+                               th:class="${sortType == 2 ? 'btn btn-secondary text-light' : 'btn btn-outline-secondary'}">Bán chạy</a>
                             <select name="sortByPrice"  onchange="document.location.href=this.value" class="sort-by custom-dropdown__select">
-                                <option th:value="@{(${category != null}? '/product/list?sortType=3&category' + ${category} : '/product/list?sortType=3')}" th:selected="${sortType == 3}">Giá: Thấp đến cao</option>
-                                <option th:value="@{(${category != null}? '/product/list?sortType=4&category' + ${category} : '/product/list?sortType=4')}" th:selected="${sortType == 4}">Giá: Cao đến thấp</option>
+                                <option th:value="@{(${category != null}? '/product/list?sortType=3&category=' + ${category} : '/product/list?sortType=3' + '&price=' + ${price != null ? price : '0'})}"
+                                        th:selected="${sortType == 3}">Giá: Thấp đến cao</option>
+                                <option th:value="@{(${category != null}? '/product/list?sortType=4&category=' + ${category} : '/product/list?sortType=4' + '&price=' + ${price != null ? price : '0'})}"
+                                        th:selected="${sortType == 4}">Giá: Cao đến thấp</option>
                             </select>
                       </span>
                     </div>
@@ -115,14 +143,12 @@
                                         th:src="@{|/assets/images/${p.image2}|}"
                                         alt="Adidas EQT Cushion ADV" class="lazyloaded">
                             </a>
-
                         </div>
                         <div class="product-detail clearfix">
                             <div class="pro-text">
                                 <a style=" color: black;
                                                 font-size: 14px;text-decoration: none;" href="#"
                                    title="Adidas EQT Cushion ADV" inspiration pack th:text="${p.name}">
-
                                 </a>
                             </div>
                             <div class="pro-price">
@@ -138,8 +164,8 @@
                 <div id="pagination" class="clearfix">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <a th:each="page: ${#numbers.sequence(0, totalPage-1)}" th:class="${currentPage==page ?'font-weight-bold' : 'page-node'}"
-                           th:href="@{( ${category != null}? '/product/list?page=' + ${page} + '&sortType=' + ${sortType != null ? sortType : '0'} + '&category=' + ${category}
-                           : '/product/list?page=' + ${page} + '&sortType=' + ${sortType != null ? sortType : '0'} )}" th:text="${page + 1}"></a>
+                           th:href="@{( ${category != null}? '/product/list?page=' + ${page} + '&sortType=' + ${sortType != null ? sortType : '0'}  + '&category=' + ${category}
+                           : '/product/list?page=' + ${page} + '&sortType=' + ${sortType != null ? sortType : '0'} + '&price=' + ${price != null ? price : '0'} )}" th:text="${page + 1}"></a>
 
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                          x="0px"

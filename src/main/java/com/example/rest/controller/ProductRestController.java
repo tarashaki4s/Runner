@@ -23,7 +23,6 @@ public class ProductRestController {
 
 	@GetMapping("{id}")
 	public Product getOne(@PathVariable("id") Integer id) {
-		System.out.println(id);
 		return productService.findSanPhamById(id);
 	}
 
@@ -43,9 +42,17 @@ public class ProductRestController {
 		productService.delete(sp);
 	}
 
-	@GetMapping("search")
-	public List<Product> findProduct(@RequestParam("name")Optional<String> request) {
+	@PutMapping("/updateByOrder")
+	public Product updateByOrder(@RequestParam("id") Integer id) {
+		Product product=productService.findSanPhamById(id);
+		return productService.updateByOrder(product);
+	}
+
+
+	@GetMapping("/search")
+	public List<Product> findProductByName(@RequestParam("name")Optional<String> request) {
 		String kwords = request.orElse("");
 		return productService.findProduct("%"+kwords+"%");
 	}
+
 }

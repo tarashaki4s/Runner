@@ -24,7 +24,7 @@ public interface ProductDAO extends JpaRepository<Product,Integer>{
 	Page<Product> findAllSanPhamByLSP(Integer CategoryId,Pageable pageable);
 	
 	@Query("SELECT sp FROM Product sp WHERE sp.Active = true AND sp.Price <=?1")
-	Page<Product> findByPrice(Integer Price,Pageable pageable);
+	Page<Product> findByPrice(Double Price,Pageable pageable);
 	
 	@Query("SELECT sp FROM Product sp WHERE sp.Active = true Order by sp.Price")
 	Page<Product> SoftByPriceTang(Pageable pageable);
@@ -44,6 +44,6 @@ public interface ProductDAO extends JpaRepository<Product,Integer>{
 	@Query(value="SELECT TOP(4) *  FROM Products WHERE Active = 1 ORDER BY Create_date DESC", nativeQuery = true)
 	List<Product> findThenewProduct();
 
-	@Query("SELECT sp FROM Product sp where sp.Name like %?1%")
+	@Query("SELECT sp FROM Product sp where sp.Name like %?1% and sp.Active=true")
 	List<Product> findByName(String keywords);
 }

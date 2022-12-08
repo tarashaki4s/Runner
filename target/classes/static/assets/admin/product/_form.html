@@ -2,15 +2,8 @@
     <div class="panel-heading">PRODUCT EDITION</div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-sm-4 text-center">
-                <label>
-                   <img ng-src="{{'/images/shoes/'+form.image1}}" style="max-width:100%;height: 250px;" alt="">
-                </label>
-                <label >
-                   <img ng-src="{{'/images/shoes/'+form.image2}}" style="max-width:100%;height: 250px;" alt="">
-                </label>
-            </div>
-            <div class="col-sm-8">
+
+            <div class="col-sm-12">
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <div>Name</div>
@@ -39,19 +32,19 @@
                     <div class="form-group col-sm-6">
                         <div>Amount</div>
                         <input ng-model="form.amount" type="text" class="form-control">
-                        <div>{{form.image1}}</div>
-                        <div>{{form.image2}}</div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <div>Image1</div>
-                        <input ng-model="form.image1"   accept="image/gif, image/jpeg, image/png, image/jpg" onchange="angular.element(this).scope().imageChanged(event)" type="file" class="form-control" id="image1">
+                        <input ng-model="form.image1"   accept="image/gif, image/jpeg, image/png, image/jpg"
+                               onchange="angular.element(this).scope().imageChanged(event)"  type="file" class="form-control" id="image1">
 
                     </div>
                     <div class="form-group col-sm-6">
                         <div>Image2</div>
-                        <input ng-model="form.image2" accept="image/gif, image/jpeg, image/png, image/jpg" onchange="angular.element(this).scope().imageChanged2(event)" type="file" class="form-control" id="image2">
+                        <input ng-model="form.image2" accept="image/gif, image/jpeg, image/png, image/jpg"
+                               onchange="angular.element(this).scope().imageChanged2(event)" type="file" class="form-control" id="image2">
                     </div>
                     
                 </div>
