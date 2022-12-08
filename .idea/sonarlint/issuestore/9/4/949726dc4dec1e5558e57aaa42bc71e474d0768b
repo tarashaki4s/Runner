@@ -1,11 +1,8 @@
 
+\	java:S107D"BConstructor has 10 parameters, which is greater than 7 authorized.(î¦¤Ûşÿÿÿÿ
 f	java:S116)"QRename this field "Gender" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÏ¡¤
-f	java:S116-"QRename this field "Active" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×ˆşÏ
-9
-java:S19481"#Make "orders" private or transient.(ŒŞãó
-C
-java:S1948@"-Make "authorities" transient or serializable.(³Í®
 8
-java:S1948D""Make "rates" private or transient.(Ô™³Æ
+java:S1948S""Make "rates" private or transient.(Ô™³Æ
+V	java:S1256"<This block of commented-out lines of code should be removed.(ÿ—Áòùÿÿÿÿ
 A
 java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü

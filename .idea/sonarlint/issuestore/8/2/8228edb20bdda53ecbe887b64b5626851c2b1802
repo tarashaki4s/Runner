@@ -1,13 +1,0 @@
-
-v
-java:S1319"aThe type of "data" should be an interface such as "Map" rather than the implementation "HashMap".(ãËú?
-ˆ
-java:S1319N"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(€óÅÃûÿÿÿÿ
-|
-java:S1319Q"aThe type of "data" should be an interface such as "Map" rather than the implementation "HashMap".(ÂöÐ¸þÿÿÿÿ
-n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©ÞÝD
->
-java:S1659"#Declare "token" on a separate line.(ï›çàþÿÿÿÿ
-V	java:S125"<This block of commented-out lines of code should be removed.(ó½ÃÆýÿÿÿÿ
-V	java:S125-"<This block of commented-out lines of code should be removed.(ó½ÃÆýÿÿÿÿ
-V	java:S1251"<This block of commented-out lines of code should be removed.(†óŽéÿÿÿÿÿ

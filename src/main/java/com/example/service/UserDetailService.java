@@ -23,8 +23,9 @@ public class UserDetailService implements UserDetails {
 
   private Collection<? extends GrantedAuthority> authorities;
 
-  public UserDetailService(String userName, String email, String password,String fullName,Boolean gender,Boolean isActive,
+  public UserDetailService(Long id,String userName, String email, String password,String fullName,Boolean gender,Boolean isActive,
                          Collection<? extends GrantedAuthority> authorities) {
+    this.id = id;
     this.userName = userName;
     this.email = email;
     this.password = password;
@@ -40,13 +41,14 @@ public class UserDetailService implements UserDetails {
         .collect(Collectors.toList());
 
     return new UserDetailService(
-        acc.getUsername(),
-        acc.getEmail(),
-        acc.getPassword(),
-        acc.getFullName(),
-        acc.getGender(),
-        acc.getIsActive(),
-        authorities);
+            acc.getId(),
+            acc.getUsername(),
+            acc.getEmail(),
+            acc.getPassword(),
+            acc.getFullName(),
+            acc.getGender(),
+            acc.getIsActive(),
+            authorities);
   }
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -87,6 +89,9 @@ public class UserDetailService implements UserDetails {
   }
   public Boolean getActive() {
     return isActive;
+  }
+  public Long getId() {
+    return id;
   }
 
 

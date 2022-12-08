@@ -176,7 +176,7 @@ public class AccountServiceImpl implements AccountService {
 
   @Override
   public Account findByUserName(String userName) {
-    return adao.findByUserName(userName).get(0);
+    return adao.findByUserName(userName);
   }
 
 

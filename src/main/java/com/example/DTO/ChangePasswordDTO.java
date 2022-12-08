@@ -14,4 +14,5 @@ public class ChangePasswordDTO {
   String currentPassword;
   String newPassword;
   String confirmPassword;
+
 }

@@ -21,6 +21,7 @@
                 <th>Image2</th>
                 <th>Amount</th>
                 <th>Color</th>
+                <th>Create Date</th>
                 <th>Quantitysold</th>
                 <th>Available?</th>
                 <th></th>
@@ -32,13 +33,13 @@
                 <td>{{item.name}}</td>
                 <td>{{item.price}}</td>
                 <td>{{item.size}}</td>
-                <td>{{item.image1}}</td>
-                <td>{{item.image2}}</td>
+                <td><img ng-src="{{'/assets/images/'+item.image1}}" style="width: 40px;height: 40px;" alt=""></td>
+                <td><img ng-src="{{'/assets/images/'+item.image2}}" style="width: 40px;height: 40px;" alt=""></td>
                 <td>{{item.amount}}</td>
                 <td>{{item.color}}</td>
                 <td>{{item.create_date}}</td>
                 <td>{{item.quantitysold}}</td>
-                <td>{{item.available?'No':'Yes'}}</td>
+                <td>{{item.active?'Yes':'No'}}</td>
                 <td>
                     <div class="btn-group btn-group-xs">
                         <button ng-click="edit(item)" data-toggle="tab" data-target="#edit" class="btn btn-warning glyphicon glyphicon-edit"></button>

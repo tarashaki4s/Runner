@@ -19,10 +19,8 @@ public interface AccountDAO extends JpaRepository<Account, String>{
 	List<Account> getAdministrators();
 
 	@Query("SELECT o FROM Account o WHERE o.username=?1")
-	List<Account> findByUserName(String userName);
+	Account findByUserName(String userName);
 
-	@Query("SELECT o FROM Account o WHERE o.username=?1")
-	Account findUserByUserName(String userName);
 	@Query(value = ("SELECT TOP 1 * FROM Accounts o WHERE o.email = ?1"),nativeQuery = true)
 	Account findByEmail(String email);
 

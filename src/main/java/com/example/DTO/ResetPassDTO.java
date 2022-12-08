@@ -14,3 +14,4 @@ public class ResetPassDTO {
   String token;
   String password;
 }
+

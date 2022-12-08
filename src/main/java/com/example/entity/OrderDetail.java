@@ -24,9 +24,6 @@ import lombok.NoArgsConstructor;
 public class OrderDetail implements Serializable{
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Id;
-	
-	@Column(name="Price")
-	private Integer Price;
 	@Column(name="Quantity")
 	private Integer Quantity;
 	

@@ -49,7 +49,8 @@ public class ProductController {
 	public String product(Model model,
 						  @RequestParam("page") Optional<Integer> page,
 						  @RequestParam("category") Optional<Integer> categoryId,
-						  @RequestParam("sortType") Optional<Integer> sortType) {
+						  @RequestParam("sortType") Optional<Integer> sortType,
+						  @RequestParam("price") Optional<Double>  price) {
 
 		Pageable pageable = PageRequest.of(page.orElse(0), 8);
 		Page<Product> list = Page.empty();
@@ -67,8 +68,11 @@ public class ProductController {
 			model.addAttribute("sortType", sortType.get());
 		}
 
-		if (categoryId.isEmpty()) {
+		if (categoryId.isEmpty() && price.isEmpty()) {
 			list = productService.findAll(pageable);
+		} else if (!price.isEmpty()) {
+			list =productService.findByPrice(price.get(),pageable);
+			model.addAttribute("price",price.get());
 		} else {
 			list = productService.findSanPhamByLSP(categoryId.get(), pageable);
 			model.addAttribute("category", categoryId.get());
@@ -85,4 +89,5 @@ public class ProductController {
 
 		return "home/product";
 	}
+
 }

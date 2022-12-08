@@ -62,7 +62,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public Page<Product> findPrice(Integer price, Pageable pageable) {
+	public Page<Product> findByPrice(Double price, Pageable pageable) {
 		// TODO Auto-generated method stub
 		return dao.findByPrice(price, pageable);
 	}
@@ -114,6 +114,13 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> findProduct(String request) {
 		// TODO Auto-generated method stub
 		return dao.findByName(request);
+	}
+
+	@Override
+	public Product updateByOrder(Product product) {
+		product.setQuantitysold(product.getQuantitysold()+1);
+		product.setAmount(product.getAmount()-1);
+		return dao.save(product);
 	}
 
 }

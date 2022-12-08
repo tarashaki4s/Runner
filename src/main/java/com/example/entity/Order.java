@@ -44,10 +44,11 @@ public class Order implements Serializable{
 	@Column(name = "Createdate")
 	Date CreateDate = new Date();
 
-//	@ManyToOne
-//	@JoinColumn(name = "AccountId")
-//	Account account;
-	
+	@ManyToOne
+	@JoinColumn(name = "Account_Id")
+	Account account;
+
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "order")
 	List<OrderDetail> orderDetails;

@@ -142,13 +142,13 @@
                 product-content-desc" id="detail-product">
               <div class="product-content-desc-1">
                 <div class="product-title">
-                  <h1>Nike Air Max 90 Essential "Grape"</h1>
-                  <span id="pro_sku">SKU: S-0015-1</span>
+                  <h1 th:text="*{name}"></h1>
+                  <span id="pro_sku" th:text="*{id}"></span>
                 </div>
-                <div class="product-price" id="price-preview"><span class="pro-price">4,800,000₫</span></div>
+                <div class="product-price" id="price-preview"><span class="pro-price" th:text="*{price}" ></span></div>
                 <form id="add-item-form" action="/cart/add" method="post" class="variants clearfix">
                   <div class="select clearfix">
-                    <div class="selector-wrapper"><label for="product-select-option-0">Màu sắc</label><span
+                    <div class="selector-wrapper"><label for="product-select-option-0" th:text="*{color}"></label><span
                         class="custom-dropdown custom-dropdown--white"><select class="single-option-selector
                             custom-dropdown__select
                             custom-dropdown__select--white" data-option="option1" id="product-select-option-0">
@@ -159,10 +159,7 @@
                         class="custom-dropdown custom-dropdown--white"><select class="single-option-selector
                             custom-dropdown__select
                             custom-dropdown__select--white" data-option="option2" id="product-select-option-1">
-                          <option value="36">36</option>
-                          <option value="37">37</option>
-                          <option value="38">38</option>
-                          <option value="35">35</option>
+                          <option th:text="*{size}"></option>
                         </select></span></div><select id="product-select" name="id" style="display:none;">
 
                       <option value="1040377813">Tím / 36 - 4,800,000₫</option>
@@ -179,7 +176,7 @@
 
 
                       <div class="header" style="background: white;
-                          color: #272727;"><span>Tím</span></div>
+                          color: #272727;" th:text="*{color}"><span></span></div>
 
                       <div class="select-swap">
                         <div data-value="Tím" class="n-sd swatch-element
@@ -208,46 +205,19 @@
 
 
                       <div class="select-swap">
-                        <div data-value="36" class="n-sd swatch-element
-                            36">
-                          <input class="variant-1" id="swatch-1-36" type="radio" name="option2" value="36"
-                            data-vhandle="36" checked="">
 
-                          <label for="swatch-1-36" class="sd">
-                            <span>36</span>
-                          </label>
 
-                        </div>
-                        <div data-value="37" class="n-sd swatch-element
-                            37">
-                          <input class="variant-1" id="swatch-1-37" type="radio" name="option2" value="37"
-                            data-vhandle="37">
-
-                          <label for="swatch-1-37">
-                            <span>37</span>
-                          </label>
-
-                        </div>
                         <div data-value="38" class="n-sd swatch-element
                             38">
                           <input class="variant-1" id="swatch-1-38" type="radio" name="option2" value="38"
                             data-vhandle="38">
 
                           <label for="swatch-1-38">
-                            <span>38</span>
+                            <span th:text="*{size}"></span>
                           </label>
 
                         </div>
-                        <div data-value="35" class="n-sd swatch-element 35
-                            soldout">
-                          <input class="variant-1" id="swatch-1-35" type="radio" name="option2" value="35"
-                            data-vhandle="35" disabled="">
 
-                          <label for="swatch-1-35">
-                            <span>35</span>
-                          </label>
-
-                        </div>
                       </div>
                     </div>
                   </div>

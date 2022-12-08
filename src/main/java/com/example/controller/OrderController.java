@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import com.example.entity.Account;
+import com.example.service.AccountService;
 import com.example.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 public class OrderController {
     @Autowired
     OrderService orderService;
+    @Autowired
+    AccountService accountService;
 
     @GetMapping("/order/checkout")
     public String checkout(){
@@ -23,7 +27,8 @@ public class OrderController {
     @RequestMapping("/order/list")
     public String list(Model model, HttpServletRequest request){
         String username = request.getRemoteUser();
-        model.addAttribute("orders",orderService.findByUsername(username));
+        Account account =accountService.findByUserName(username);
+        model.addAttribute("orders",orderService.findByAccountId(account.getId()));
         return "home/listorder";
     }
 

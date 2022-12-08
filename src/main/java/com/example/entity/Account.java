@@ -65,6 +65,18 @@ public class Account implements Serializable {
   }
 
 
+  public Account(Long id, String username, String password, String email, String fullName, Boolean gender, String verificationCode, Boolean isActive, String resetPasswordToken, Set<Role> role) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.email = email;
+    this.fullName = fullName;
+    Gender = gender;
+    this.verificationCode = verificationCode;
+    this.isActive = isActive;
+    this.resetPasswordToken = resetPasswordToken;
+    this.role = role;
+  }
 
   @JsonIgnore
   @OneToMany(mappedBy = "account")

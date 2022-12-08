@@ -3,23 +3,33 @@ app.controller("ctrl",function ($scope,$http) {
 
     // Mananer shopping-cart
     $scope.cart = {
+        address: "",
         products : [],
         items:[],
+        account_id:"",
 
         //Add item
         add(id){
-	alert("Sản phẩm đã thêm giỏ hàng thành công")
 
 		var item=this.items.find(item => item.id==id);
 		if(item){
+            alert("Sản phẩm đã thêm giỏ hàng thành công")
 			item.qty++;
 			this.saveToLocalStorage();
+            location.reload();
 		}
 		else{	
-			$http.get(`/rest/products/${id}`).then(resp =>{
-				resp.data.qty=1;
-				this.items.push(resp.data);
-				this.saveToLocalStorage();
+                $http.get(`/rest/products/${id}`).then(resp =>{
+                    if(resp.data.amount==1){
+                        alert("Sản phẩm hiện đang hết hàng")
+                    }
+                    else {
+                        alert("Sản phẩm đã thêm giỏ hàng thành công")
+                        resp.data.qty = 1;
+                        this.items.push(resp.data);
+                        this.saveToLocalStorage();
+                        location.reload();
+                    }
 			})
 		} 
 			
@@ -68,39 +78,60 @@ app.controller("ctrl",function ($scope,$http) {
             }).catch(error => {
                 console.log("Error", error);
             });
+        },
+
+        getId(){
+            var keyword = $("#username").text();
+            $http.get('/rest/accounts/getId?username='+keyword).then(resp => {
+              this.account_id= resp.data.id;
+            }).catch(error => {
+                console.log("Error", error);
+            });
+        },
+
+        purchase() {
+            const order = {
+                createDate: new Date(),
+                address: this.address,
+                status: false,
+                account: {id: this.account_id},
+                get orderDetails() {
+                    return $scope.cart.items.map(item => {
+                        $http.put('/rest/products/updateByOrder?id='+item.id).then(resp => {
+                        }).catch(error => {
+                            console.log("Error", error);
+                        });
+                        console.log(item.id)
+                        return {
+                            product: {id: item.id},
+                            quantity: item.qty
+                        }
+                    });
+                }
+            };
+            if (!order.address) {
+                alert("Ban chưa nhập địa chỉ")
+            }
+            else {
+                // Thuc hien dat hang
+                $http.post("/rest/orders", order).then(resp => {
+                    alert("Đặt hàng thành công !");
+                    $scope.cart.clear();
+                    location.href = "/order/detail/" + resp.data.id;
+                }).catch(error => {
+                    alert("Lỗi!");
+                    console.log(error);
+                })
+            }
         }
     }
 
     $scope.cart.loadFromLocalStorage();
+    $scope.cart.getId();
 
 
 
 
 
-   $scope.order = {
-        createDate: new Date(),
-        address: "",
-        account: { username: $("#username").text() },
-        get orderDetails() {
-            return $scope.cart.items.map(item => {
-                return {
-                    product: { id: item.id },
-                    price: item.price,
-                    quantity: item.qty
-                }
-            });
-        },
-        purchase() {
-            var order = angular.copy(this);
-            //Thuc hien dat hang
-            $http.post("/rest/orders", order).then(resp => {
-                alert("Đặt hàng thành công !");
-                $scope.cart.clear();
-                location.href = "/order/detail/" + resp.data.id;
-            }).catch(error => {
-                alert("Lỗi!");
-                console.log(error);
-            })
-        }
-    }
+
 });

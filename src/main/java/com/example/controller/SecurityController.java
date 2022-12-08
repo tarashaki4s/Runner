@@ -108,9 +108,9 @@ public class SecurityController {
     return "home/login";
   }
 
-  @GetMapping("/security/logoff/success")
-  public String logoffSuccess(Model model) {
-    model.addAttribute("msg", "Bạn đã đăng xuất!");
+  @RequestMapping("/security/logoff/success")
+  public String logoffSuccess(Model model){
+    model.addAttribute("msg","Bạn đã đăng xuất!");
     return "home/login";
   }
 
@@ -213,6 +213,7 @@ public class SecurityController {
         model.addAttribute("message", "Your account is not verify! Please check your email...");
         return "home/login";
       } else {
+        model.addAttribute("id",userDetails.getId());
         model.addAttribute("userName", userDetails.getUsername());
         model.addAttribute("email", userDetails.getEmail());
         model.addAttribute("fullName", userDetails.getFullName());

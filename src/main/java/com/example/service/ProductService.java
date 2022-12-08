@@ -26,7 +26,7 @@ public interface ProductService {
 	
 	Page<Product> findSanPhamByLSP(Integer maLSP, Pageable pageable);
 	
-	Page<Product> findPrice(Integer price, Pageable pageable);
+	Page<Product> findByPrice(Double price, Pageable pageable);
 	
 	Page<Product> SoftByPriceTang( Pageable pageable);
 	
@@ -42,4 +42,5 @@ public interface ProductService {
 	
 	List<Product> findProduct(String keyword);
 
+	Product updateByOrder(Product product);
 }
