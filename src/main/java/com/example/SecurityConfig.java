@@ -32,9 +32,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableGlobalMethodSecurity(
-    // securedEnabled = true,
-    // jsr250Enabled = true,
-    prePostEnabled = true)
+        // securedEnabled = true,
+        // jsr250Enabled = true,
+        prePostEnabled = true)
 public class SecurityConfig {
   //		extends WebSecurityConfigurerAdapter {
   @Autowired
@@ -90,16 +90,16 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable()
-        .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS).and()
-        .authorizeRequests().antMatchers("/admin/**").hasAnyRole( "ROLE_ADMIN")
-        .antMatchers("/home/**").permitAll()
+            .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS).and()
+            .authorizeRequests().antMatchers("/admin/**").hasAnyRole( "ROLE_ADMIN")
+            .antMatchers("/home/**").permitAll()
 //				.antMatchers("/js/**","/css/**","/images/**","assets/images/**","hinhanhcustom/**","fints.quicksand/**","plugins/**").permitAll()
-        .antMatchers("/order/**").authenticated()
+            .antMatchers("/order/**").authenticated()
 
-        
+
 //				.antMatchers("/rest/authorities","/rest/accounts/create").hasRole("DIRE").anyRequest().permitAll()
-        .antMatchers("/security/**").permitAll();
+            .antMatchers("/security/**").permitAll();
 //    http.formLogin()
 //        // Khi gặp địa chỉ URL này
 //        .loginPage("/security/login/form")
@@ -109,12 +109,10 @@ public class SecurityConfig {
 //        // True sẽ tiếp tục quay trở lại địa chỉ URL của trang đăng nhập
 //        .defaultSuccessUrl("/security/home", true).failureUrl("/security/login/error");
     http.authenticationProvider(authenticationProvider());
-    http.rememberMe().tokenValiditySeconds(86400);
+//    http.rememberMe().tokenValiditySeconds(86400);
     http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-
     http.logout().logoutUrl("/security/logoff").logoutSuccessUrl("/security/logoff/success");
     return http.build();
-
   }
 //  @Autowired
 //  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -157,7 +155,7 @@ public class SecurityConfig {
 //
 //		http.exceptionHandling().accessDeniedPage("/security/unauthoried");// error
 //
-		// Đăng xuất
-
+//		// Đăng xuất
+//
 //	}
 }
