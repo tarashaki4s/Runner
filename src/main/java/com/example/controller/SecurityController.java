@@ -37,6 +37,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 
@@ -131,17 +132,22 @@ public class SecurityController {
 
 
   @PostMapping("/home/changepassword")
-  public String changePassword(@ModelAttribute ChangePasswordDTO changePasswordRequest) {
-
+  public String changePassword(@Valid ChangePasswordDTO changePasswordRequest, Model model) {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    UserDetailServiceImpl userDetailService = (UserDetailServiceImpl) authentication.getPrincipal();
-
-//    if (userDetailService == null) {
-//      model.addAttribute("message", "Error: Password not match!");
-//    } else {
-//      accountService.changePassword(changePasswordRequest.getCurrentPassword(), changePasswordRequest.getNewPassword());
-//      model.addAttribute("message", "Message: Change password successfully!");
-//    }
+    if (authentication == null) {
+      model.addAttribute("message", "Error: Password not match!");
+    }
+    if (authentication != null) {
+      UserDetailService userDetails = (UserDetailService) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      Account account = accountService.findByUserName(userDetails.getUsername());
+      if (!(encoder.matches(changePasswordRequest.getCurrentPassword(), account.getPassword()))) {
+        model.addAttribute("message", "Your current password is not valid!");
+      } else {
+        accountService.updatePassword(account, changePasswordRequest.getNewPassword());
+        model.addAttribute("message", "Message: Change password successfully!");
+      }
+      return "home/changepassword";
+    }
 
     return "redirect:/home/index";
 
@@ -191,35 +197,50 @@ public class SecurityController {
   }
 
   @PostMapping("security/login")
+
   public String authenticateUser(@Valid LoginDTO loginRequest, Model model) {
-    Authentication authentication = authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-    SecurityContextHolder.getContext().setAuthentication(authentication);
-    String jwt = jwtUtils.generateJwtToken(authentication);
-    UserDetailService userDetails = (UserDetailService) authentication.getPrincipal();
-    List<String> roles = userDetails.getAuthorities().stream()
-        .map(item -> item.getAuthority())
-        .collect(Collectors.toList());
-    model.addAttribute("id",userDetails.getId());
-    model.addAttribute("userName", userDetails.getUsername());
-    model.addAttribute("email", userDetails.getEmail());
-    model.addAttribute("fullName", userDetails.getFullName());
-    model.addAttribute("gender", userDetails.getGender());
-    model.addAttribute("active", userDetails.getActive());
-    model.addAttribute("token", jwt);
-    model.addAttribute("role", roles);
-    return "/home/index";
+    try {
+      Authentication authentication = authenticationManager.authenticate(
+          new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+      SecurityContextHolder.getContext().setAuthentication(authentication);
+      String jwt = jwtUtils.generateJwtToken(authentication);
+
+      UserDetailService userDetails = (UserDetailService) authentication.getPrincipal();
+      List<String> roles = userDetails.getAuthorities().stream()
+          .map(item -> item.getAuthority())
+          .collect(Collectors.toList());
+      if (userDetails.getActive() == false) {
+        model.addAttribute("message", "Your account is not verify! Please check your email...");
+        return "home/login";
+      } else {
+        model.addAttribute("id",userDetails.getId());
+        model.addAttribute("userName", userDetails.getUsername());
+        model.addAttribute("email", userDetails.getEmail());
+        model.addAttribute("fullName", userDetails.getFullName());
+        model.addAttribute("gender", userDetails.getGender());
+        model.addAttribute("active", userDetails.getActive());
+        model.addAttribute("token", jwt);
+        model.addAttribute("role", roles);
+        return "/home/index";
+      }
+    } catch (Exception ex) {
+      model.addAttribute("message", "Sai thông tin đăng nhập!");
+      return "home/login";
+    }
+
 //    return "redirect:/home/index";
   }
 
   @PostMapping("/home/signUp")
-  public String registerUser(@Valid SignUpDTO signUpRequest) throws MessagingException, UnsupportedEncodingException {
+  public String registerUser(@Valid @RequestBody SignUpDTO signUpRequest ,Model model) throws MessagingException, UnsupportedEncodingException {
     if (accountDAO.existsByUsername(signUpRequest.getUsername())) {
-      return "Error: Username is already taken!";
+      model.addAttribute("message", "Error: Username is already taken!");
+      return "home/register";
     }
 
     if (accountDAO.existsByEmail(signUpRequest.getEmail())) {
-      return "Error: Email is already in use!";
+      model.addAttribute("message", "Error: Email is already in use!");
+      return "home/register";
     }
 
     // Create new user's account

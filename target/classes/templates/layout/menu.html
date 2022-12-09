@@ -208,7 +208,7 @@
                 </a>
                 <div class="dropdown-menu">
                     <th:block th:if="${#request.remoteUser}">
-                        <a class="dropdown-item" th:href="@{/security/logoff}">Đăng xuất</a>
+                        <a class="dropdown-item" th:href="@{/security/logoff/success}">Đăng xuất</a>
                     </th:block>
                     <th:block th:unless="${#request.remoteUser}">
                         <a class="dropdown-item" th:href="@{/home/register}">Đăng kí</a>

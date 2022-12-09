@@ -25,7 +25,7 @@ public interface AccountDAO extends JpaRepository<Account, String>{
 	Account findByEmail(String email);
 
 	public Account findByResetPasswordToken(String token);
-	@Query("select a from Account a where a.username=?1 and a.password=?2")
-	Account findByUserNameAndPassword(String username,String password);
+//	@Query("select a from Account a where a.username=?1 and a.password=?2")
+//	Account findByUserNameAndPassword(String username,String password);
 
 }
