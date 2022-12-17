@@ -232,7 +232,7 @@ public class SecurityController {
   }
 
   @PostMapping("/home/signUp")
-  public String registerUser(@Valid @RequestBody SignUpDTO signUpRequest ,Model model) throws MessagingException, UnsupportedEncodingException {
+  public String registerUser(@Valid SignUpDTO signUpRequest ,Model model) throws MessagingException, UnsupportedEncodingException {
     if (accountDAO.existsByUsername(signUpRequest.getUsername())) {
       model.addAttribute("message", "Error: Username is already taken!");
       return "home/register";
