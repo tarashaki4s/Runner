@@ -200,6 +200,10 @@ public class SecurityController {
 
   public String authenticateUser(@Valid LoginDTO loginRequest, Model model) {
     try {
+      if(loginRequest.getUsername().equals("") && loginRequest.getPassword().equals("")){
+        model.addAttribute("message", "Vui lòng điền đủ thông tin đăng nhập!");
+        return "home/login";
+      }
       Authentication authentication = authenticationManager.authenticate(
           new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
       SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -232,7 +236,7 @@ public class SecurityController {
   }
 
   @PostMapping("/home/signUp")
-  public String registerUser(@Valid @RequestBody SignUpDTO signUpRequest ,Model model) throws MessagingException, UnsupportedEncodingException {
+  public String registerUser(@Valid  SignUpDTO signUpRequest ,Model model) throws MessagingException, UnsupportedEncodingException {
     if (accountDAO.existsByUsername(signUpRequest.getUsername())) {
       model.addAttribute("message", "Error: Username is already taken!");
       return "home/register";
