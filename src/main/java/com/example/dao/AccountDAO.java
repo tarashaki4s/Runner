@@ -28,4 +28,6 @@ public interface AccountDAO extends JpaRepository<Account, String>{
 //	@Query("select a from Account a where a.username=?1 and a.password=?2")
 //	Account findByUserNameAndPassword(String username,String password);
 
+	@Query("SELECT o FROM Account o WHERE o.username=?1")
+	Account findUserByUserName(String userName);
 }

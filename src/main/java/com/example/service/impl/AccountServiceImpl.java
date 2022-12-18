@@ -84,7 +84,7 @@ public class AccountServiceImpl implements AccountService {
     }
   }
 
-  public void updateResetPasswordToken(@RequestBody String token, String email) throws UsernameNotFoundException {
+  public void updateResetPasswordToken(String token, String email) throws UsernameNotFoundException {
     System.out.println(email);
     Account account = adao.findByEmail(email);
     System.out.println(account);
