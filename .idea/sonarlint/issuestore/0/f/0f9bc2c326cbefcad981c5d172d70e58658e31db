@@ -1,0 +1,43 @@
+
+v
+java:S1192‰"ZDefine a constant instead of duplicating this literal "Error: Role is not found." 4 times.(ÉÿÊ–ùÿÿÿÿ
+k
+java:S1192w"NDefine a constant instead of duplicating this literal "home/register" 3 times.(ìø˜ú8ˆû”“Ï0
+h
+java:S1192O"KDefine a constant instead of duplicating this literal "home/login" 8 times.(µ…á8Šû”“Ï0
+l
+java:S1192Š"IDefine a constant instead of duplicating this literal "message" 13 times.(Ö´†¬øÿÿÿÿ8Œû”“Ï0
+H
+java:S5411Ø"*Use the primitive boolean expression here.(À·ê8—õƒ¬Ò0
+M
+java:S5411ğ"*Use the primitive boolean expression here.(·ˆ‘ıÿÿÿÿ8•û”“Ï0
+G
+java:S5411õ"*Use the primitive boolean expression here.(ç½¿8–û”“Ï0
+j
+java:S6201]"HReplace this instanceof check and cast with 'instanceof Account account'(úŒ¢Äøÿÿÿÿ8ªƒ•“Ï0
+o	java:S100v"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıúÂ…ùÿÿÿÿ8ºƒ•“Ï0
+[	java:S106 "9Replace this use of System.out or System.err by a logger.(…¹‚²øÿÿÿÿ8Îƒ•“Ï0
+p
+java:S6204×"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹8øƒ¬Ò0
+i
+java:S1612Ö"KReplace this lambda with method reference 'GrantedAuthority::getAuthority'.(¡©é½8øƒ¬Ò0
+E
+java:S1125Ø"'Remove the unnecessary boolean literal.(À·ê8’øƒ¬Ò0
+^	java:S125ë"<This block of commented-out lines of code should be removed.(™ÚİÓøÿÿÿÿ8¡øƒ¬Ò0
+7	java:S131""Add a default case to this switch.(¶„æ
+I
+java:S1128"4Remove this unused import 'java.security.Principal'.(’ÛŞ[
+W
+java:S1128"ARemove this unused import 'com.example.DTO.response.JwtResponse'.(Ñ„Ïù
+[
+java:S1128"ERemove this unused import 'com.example.DTO.response.MessageResponse'.(¼Õ‘
+V
+java:S1128"@Remove this unused import 'org.springframework.beans.BeanUtils'.(ŠğÄÜ
+[
+java:S1128"@Remove this unused import 'org.springframework.http.HttpStatus'.(íŸ¤Šúÿÿÿÿ
+_
+java:S1128"DRemove this unused import 'org.springframework.http.ResponseEntity'.(¶¯ø¦úÿÿÿÿ
+w
+java:S1128 "aRemove this unused import 'org.springframework.security.core.annotation.AuthenticationPrincipal'.(Øù¢
+l
+java:S1128""VRemove this unused import 'org.springframework.security.core.userdetails.UserDetails'.(ÊÁ¥

@@ -65,6 +65,11 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public List<Order> findByStatusTrue() {
+        return oDao.findByStatusTrue();
+    }
+
+    @Override
     public Order updateStatus(Order order) {
         // TODO Auto-generated method stub
         order.setStatus(true);

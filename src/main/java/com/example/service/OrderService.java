@@ -15,6 +15,8 @@ public interface OrderService {
 
     List<Order> findByStatus();
 
+    List<Order> findByStatusTrue();
+
     Order updateStatus(Order order);
 
 }

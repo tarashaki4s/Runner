@@ -1,0 +1,17 @@
+
+l
+java:S3655”"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(•’ñ³úÿÿÿÿ
+S	java:S106X"9Replace this use of System.out or System.err by a logger.(î¸ıÿÿÿÿ
+S	java:S106Z"9Replace this use of System.out or System.err by a logger.(Âé’ùÿÿÿÿ
+Y
+java:S1117c"CRename "passwordEncoder" which hides the field declared at line 33.(‡â÷‹
+Y
+java:S1117s"CRename "passwordEncoder" which hides the field declared at line 33.(‡â÷‹
+X
+java:S1128"BRemove this unused import 'com.example.service.UserDetailService'.(ŞşŞÁ
+c
+java:S1128"MRemove this unused import 'org.springframework.security.core.Authentication'.(ñıÓ“
+r
+java:S1128"\Remove this unused import 'org.springframework.security.core.context.SecurityContextHolder'.(ŒÄæë
+k
+java:S1128"PRemove this unused import 'org.springframework.web.bind.annotation.RequestBody'.(â­½Àıÿÿÿÿ

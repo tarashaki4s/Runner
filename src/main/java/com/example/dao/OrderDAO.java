@@ -27,4 +27,7 @@ public interface OrderDAO extends JpaRepository<Order,Long> {
             "WHERE YEAR(CreateDate) = YEAR(GETDATE()) \n" +
             "GROUP BY MONTH(CreateDate)", nativeQuery = true)
     List<IRevenueByMonth> getRevenueByMonth();
+    
+    @Query("SELECT o FROM Order o WHERE o.status=true")
+    List<Order> findByStatusTrue();
 }
