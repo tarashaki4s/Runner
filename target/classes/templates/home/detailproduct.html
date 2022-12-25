@@ -143,9 +143,9 @@
               <div class="product-content-desc-1">
                 <div class="product-title">
                   <h1 th:text="*{name}"></h1>
-                  <span id="pro_sku" th:text="*{id}"></span>
                 </div>
                 <div class="product-price" id="price-preview"><span class="pro-price" th:text="*{price}" ></span></div>
+                <div class="product-price" id="amount-preview">Số lượng:<span class="" th:text="*{Amount}" ></span></div>
                 <form id="add-item-form" action="/cart/add" method="post" class="variants clearfix">
                   <div class="select clearfix">
                     <div class="selector-wrapper"><label for="product-select-option-0" th:text="*{color}"></label><span
@@ -222,11 +222,6 @@
                     </div>
                   </div>
                   <div class="selector-actions">
-                    <div class="quantity-area clearfix">
-                      <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
-                      <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
-                      <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
-                    </div>
                     <div class="wrap-addcart clearfix">
                       <div class="row-flex">
                         <button type="button" class="button btn-addtocart addtocart-modal"

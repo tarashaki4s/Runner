@@ -1,4 +1,4 @@
-app = angular.module("admin-app", ["ngRoute"]);
+app = angular.module("admin-app", ["ngRoute", "chart.js"]);
 
 app.config(function($routeProvider) {
     $routeProvider
@@ -7,6 +7,9 @@ app.config(function($routeProvider) {
             controller: "product-ctrl"
         }).when("/order", {
             templateUrl: "/assets/admin/order/index.html",
+            controller: "order-ctrl"
+        }).when("/statistic", {
+            templateUrl: "/assets/admin/statistics/index.html",
             controller: "order-ctrl"
         })
         .when("/authorize", {

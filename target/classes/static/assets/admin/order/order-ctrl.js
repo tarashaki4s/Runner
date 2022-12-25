@@ -1,6 +1,8 @@
 app.controller("order-ctrl", function($scope, $http, $location) {
 	
 	$scope.items = [];
+	$scope.sales = [];
+    $scope.revenue = [];
 
 	$scope.initialize = function(){
 		// load product
@@ -11,7 +13,41 @@ app.controller("order-ctrl", function($scope, $http, $location) {
 	}
 
 	$scope.initialize();
-    
+
+    $scope.initializeStatistic = function(){
+    // load product
+        $http.get("/rest/statistics/sales").then(resp => {
+            $scope.sales = resp.data;
+            console.log(resp.data);
+        });
+                //load categories
+        $http.get("/rest/statistics/revenue").then(resp => {
+            $scope.revenue = resp.data;
+        });
+    }
+
+    $scope.initializeStatistic();
+
+    $scope.labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
+    $scope.series = ['Doanh số'];
+    $scope.onClick = function (points, evt) {
+      console.log(points, evt);
+    };
+    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
+    $scope.options = {
+      scales: {
+        yAxes: [
+          {
+            id: 'y-axis-1',
+            type: 'linear',
+            display: true,
+            position: 'left'
+          },
+        ]
+      }
+    };
+
+
   $scope.updatestatus = function(item){
 
 		$http.put(`/rest/orders/updateStatus/${item.id}`,item).then(resp => {

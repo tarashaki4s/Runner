@@ -57,9 +57,7 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/home/contact}">LIÊN HỆ</a>
                         </li>
-                        <li class="nav-item" th:if="${#request.remoteUser}">
-                            <a class="nav-link" th:href="@{/home/changepassword}">ĐỔI MẬT KHẨU</a>
-                        </li>
+
                 </ul>
             </div>
             <div id="offcanvas-flip1" uk-offcanvas="flip: true; overlay: true">
@@ -185,7 +183,7 @@
                                 <tbody>
                                 <tr>
                                     <td class="text-left">TỔNG TIỀN:</td>
-                                    <td class="text-right" id="total-view-cart">${{cart.amount}}đ</td>
+                                    <td class="text-right" id="total-view-cart">{{cart.amount}} VND</td>
                                 </tr>
                                 <tr>
                                     <td class="distance-td"><a href="" class="linktocart button dark">Xem giỏ hàng</a></td>
@@ -209,6 +207,7 @@
                 <div class="dropdown-menu">
                     <th:block th:if="${#request.remoteUser}">
                         <a class="dropdown-item" th:href="@{/security/logoff}">Đăng xuất</a>
+                        <a class="dropdown-item" th:href="@{/home/changepassword}">Đổi mật khẩu</a>
                     </th:block>
                     <th:block th:unless="${#request.remoteUser}">
                         <a class="dropdown-item" th:href="@{/home/register}">Đăng kí</a>

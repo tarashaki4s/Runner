@@ -86,19 +86,19 @@
                                 class="icon-control"></span></div>
                         <ul class="sanpham" style="display: block;list-style-type:none;">
                             <a th:href="@{/product/list(price=1000000)}"
-                               th:class="${price == 1000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">- 1,000,000đ</a>
+                               th:class="${price == 1000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">từ 1,000,000đ</a>
                             <br>
                             <a th:href="@{/product/list(price=2000000)}"
-                               th:class="${price == 2000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">- 2,000,000đ</a>
+                               th:class="${price == 2000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">từ 2,000,000đ</a>
                             <br>
                             <a th:href="@{/product/list(price=3000000)}"
-                               th:class="${price == 3000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">- 3,000,000đ</a>
+                               th:class="${price == 3000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">từ 3,000,000đ</a>
                             <br>
                             <a th:href="@{/product/list(price=4000000)}"
-                               th:class="${price == 4000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">- 4,000,000đ</a>
+                               th:class="${price == 4000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">từ 4,000,000đ</a>
                             <br>
                             <a th:href="@{/product/list(price=5000000)}"
-                               th:class="${price == 5000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">- 5,000,000đ</a>
+                               th:class="${price == 5000000 ? 'text-decoration-none font-weight-bold' : 'text-decoration-none'}">từ 5,000,000đ</a>
                         </ul>
                     </div>
                 </div>
@@ -155,6 +155,7 @@
 
                                 <p class="">[[${p.price}]]đ</p>
                             </div>
+                            <p class="text-sm">Số lượng: [[${p.Amount}]]</p>
                             <p class="text-sm">Đã bán: [[${p.Quantitysold}]]</p>
                         </div>
                     </div>

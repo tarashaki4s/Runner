@@ -1,0 +1,23 @@
+
+<ul class="nav nav-tabs" style="font-variant:small-caps">
+    <li>
+        <a data-toggle="tab" data-target="#edit" style="cursor: pointer;">Doanh số</a>
+    </li>
+    <li class="active">
+        <a data-toggle="tab" data-target="#list" style="cursor: pointer;">Doanh thu</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div id="edit" class="tab-pane fade">
+        <canvas id="line" class="chart chart-line" chart-data="sales"
+                chart-labels="labels" chart-series="series" chart-options="options"
+                chart-dataset-override="datasetOverride" chart-click="onClick">
+        </canvas>
+    </div>
+    <div id="list" class="tab-pane fade in active">
+        <canvas id="line" class="chart chart-line" chart-data="revenue"
+                chart-labels="labels" chart-series="series" chart-options="options"
+                chart-dataset-override="datasetOverride" chart-click="onClick">
+        </canvas>
+    </div>
+</div>

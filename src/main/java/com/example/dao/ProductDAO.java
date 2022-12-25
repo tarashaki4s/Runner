@@ -23,7 +23,7 @@ public interface ProductDAO extends JpaRepository<Product,Integer>{
 	@Query("SELECT sp FROM Product sp WHERE sp.Active = true AND sp.category.Id =?1")
 	Page<Product> findAllSanPhamByLSP(Integer CategoryId,Pageable pageable);
 	
-	@Query("SELECT sp FROM Product sp WHERE sp.Active = true AND sp.Price <=?1")
+	@Query("SELECT sp FROM Product sp WHERE sp.Active = true AND sp.Price >=?1")
 	Page<Product> findByPrice(Double Price,Pageable pageable);
 	
 	@Query("SELECT sp FROM Product sp WHERE sp.Active = true Order by sp.Price")

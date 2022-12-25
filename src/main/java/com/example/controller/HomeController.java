@@ -3,6 +3,7 @@ package com.example.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.service.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,8 @@ public class HomeController {
 	@Autowired
 	ProductService productService;
 
+	@Autowired
+	StatisticService statisticService;
 	@GetMapping(value = {"/home/index", ""})
 	public String index(Model model) {
 		List<Product> list = productService.findTheBestProduct();
@@ -25,7 +28,6 @@ public class HomeController {
 		model.addAttribute("newitems", listnewproduct);
 		return "home/index";
 	}
-
 
 
 
