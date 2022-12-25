@@ -135,16 +135,16 @@ public class SecurityController {
   public String changePassword(@Valid ChangePasswordDTO changePasswordRequest, Model model) {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     if (authentication == null) {
-      model.addAttribute("message", "Error: Password not match!");
+      model.addAttribute("message", "Error: Mật khẩu không trùng khớp!");
     }
     if (authentication != null) {
       UserDetailService userDetails = (UserDetailService) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
       Account account = accountService.findByUserName(userDetails.getUsername());
       if (!(encoder.matches(changePasswordRequest.getCurrentPassword(), account.getPassword()))) {
-        model.addAttribute("message", "Your current password is not valid!");
+        model.addAttribute("message", "Sai mật khẩu hiện tại!");
       } else {
         accountService.updatePassword(account, changePasswordRequest.getNewPassword());
-        model.addAttribute("message", "Message: Change password successfully!");
+        model.addAttribute("message", "Đổi mật khẩu thành công!");
       }
       return "home/changepassword";
     }
@@ -162,11 +162,11 @@ public class SecurityController {
       accountService.updateResetPasswordToken(token, forgetPassword.getEmail());
       String resetPasswordLink = getSiteURL + "/home/reset-password?token=" + token;
       accountService.sendEmail(forgetPassword.getEmail(), resetPasswordLink);
-      model.addAttribute("message", "We have sent a reset password link to your email. Please check.");
+      model.addAttribute("message", "Vui lòng check email của bạn để lấy lại mật khẩu!");
     } catch (UsernameNotFoundException ex) {
       model.addAttribute("error", ex.getMessage());
     } catch (UnsupportedEncodingException | MessagingException e) {
-      model.addAttribute("error", "Error while sending email");
+      model.addAttribute("error", "Bạn chưa nhập email!");
     }
     return "home/forgetpassword";
   }
@@ -191,7 +191,7 @@ public class SecurityController {
       model.addAttribute("message", "Invalid Token");
     } else {
       accountService.updatePassword(account, resetPasswordRequest.getPassword());
-      model.addAttribute("message", "You have successfully changed your password!");
+      model.addAttribute("message", "Đổi mật khẩu thành công!");
     }
     return "home/resetpassword";
   }
@@ -214,7 +214,7 @@ public class SecurityController {
           .map(item -> item.getAuthority())
           .collect(Collectors.toList());
       if (userDetails.getActive() == false) {
-        model.addAttribute("message", "Your account is not verify! Please check your email...");
+        model.addAttribute("message", "Tài khoản của bạn không có quyền đăng nhập");
         return "home/login";
       } else {
         model.addAttribute("id",userDetails.getId());
@@ -237,13 +237,21 @@ public class SecurityController {
 
   @PostMapping("/home/signUp")
   public String registerUser(@Valid  SignUpDTO signUpRequest ,Model model) throws MessagingException, UnsupportedEncodingException {
+    if(signUpRequest.getUsername().equals("") && signUpRequest.getPassword().equals("") && signUpRequest.getFullName().equals("")&&signUpRequest.getEmail().equals("")){
+      model.addAttribute("message", "Vui lòng điền đầy đủ thông tin!");
+      return "home/register";
+    }
     if (accountDAO.existsByUsername(signUpRequest.getUsername())) {
-      model.addAttribute("message", "Error: Username is already taken!");
+      model.addAttribute("message", "Error: Username đã tồn tại!");
       return "home/register";
     }
 
     if (accountDAO.existsByEmail(signUpRequest.getEmail())) {
-      model.addAttribute("message", "Error: Email is already in use!");
+      model.addAttribute("message", "Error: Email đã tồn tại!");
+      return "home/register";
+    }
+    if(!signUpRequest.getPassword().equals(signUpRequest.getConfirmPassword())){
+      model.addAttribute("message", "Mật khẩu không trùng khớp!");
       return "home/register";
     }
 
@@ -287,7 +295,7 @@ public class SecurityController {
     account.setRole(roles);
     accountService.registerVerify(account, getSiteURL);
 
-
-    return "home/login";
+    model.addAttribute("messageSuccess", "Đăng kí thành công vui lòng kiểm tra email để xác thực!");
+    return "home/register";
   }
 }
