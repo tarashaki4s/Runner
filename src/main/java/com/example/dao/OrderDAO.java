@@ -12,4 +12,7 @@ public interface OrderDAO extends JpaRepository<Order,Long> {
 
     @Query("SELECT o FROM Order o WHERE o.status=false")
     List<Order> findByStatus();
+
+    @Query("SELECT o FROM Order o WHERE o.status=true")
+    List<Order> findByStatusTrue();
 }

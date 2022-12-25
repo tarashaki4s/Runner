@@ -172,7 +172,7 @@
                                         <a class="pro-title-view" style="color: #272727" href=""
                                            title="Nike Air Max 90 Essential &quot;Grape&quot;">{{item.name}}</a>
                                         <span class="variant">{{item.color}}/{{item.size}}</span>
-                                        <span class="pro-quantity-view"><input ng-change="cart.saveToLocalStorage()" min=0 ng-model="item.qty" type="number"  style="width: 25px; border: #ededed; text-align: center;"></span>
+                                        <span class="pro-quantity-view"><input ng-change="cart.saveToLocalStorage()" min=1 max="10" ng-model="item.qty" type="number"  style="width: 25px; border: #ededed; text-align: center;"></span>
                                         <span class="pro-price-view">{{item.price}}đ</span>
                                         <span class="remove_link remove-cart"><a href="" ng-click="cart.remove(item.id)"><i style="color: #272727;"
                                                                                                                             class="fas fa-times"></i></a></span>

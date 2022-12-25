@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div style="display:flex">
+            <div class="col-md-8">
+                <div class="float-left">Order LIST</div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-condensed">
+        <thead class="bg-success" style="font-variant:small-caps;">
+            <tr>
+                <th>ID</th>
+                <th>Ngày đăt hàng</th>
+                <th>Địa chỉ</th>
+                <th>Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in pagerOrderConfirm.orders">
+                <td>{{item.id}}</td>
+                <td>{{item.createDate}}</td>
+                <td>{{item.address}}</td>
+               <td>{{item.status?"Đã xác nhận":"Chưa xác nhận"}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="panel-footer text-center">
+        <button ng-click="pagerOrderConfirm.first()" class="btn btn-danger">
+            <b class="glyphicon glyphicon-hand-up"></b>
+        </button>
+        <button ng-click="pagerOrderConfirm.prev()" class="btn btn-primary">
+            <b class="glyphicon glyphicon-hand-left"></b>
+        </button>
+        <button class="btn btn-success">{{pagerOrderConfirm.page + 1}} of {{pagerOrderConfirm.countOrderconfirm}}</button>
+        <button ng-click="pagerOrderConfirm.next()" class="btn btn-primary">
+            <b class="glyphicon glyphicon-hand-right"></b>
+        </button>
+        <button ng-click="pagerOrderConfirm.last()" class="btn btn-danger">
+            <b class="glyphicon glyphicon-hand-down"></b>
+        </button>
+    </div>
+
+</div>

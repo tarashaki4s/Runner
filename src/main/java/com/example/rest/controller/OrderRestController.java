@@ -25,6 +25,11 @@ public class OrderRestController {
         return  orderService.findByStatus();
     }
 
+    @GetMapping("/list/orderconfirm")
+    public List<Order> findAllOrderTrue() {
+        return  orderService.findByStatusTrue();
+    }
+
     @PutMapping("/updateStatus/{id}")
     public Order update(@PathVariable("id") Integer id, @RequestBody Order order) {
         return orderService.updateStatus(order);

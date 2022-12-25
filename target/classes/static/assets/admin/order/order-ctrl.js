@@ -1,11 +1,14 @@
 app.controller("order-ctrl", function($scope, $http, $location) {
 	
 	$scope.items = [];
-
+	$scope.orders = [];
 	$scope.initialize = function(){
 		// load product
 		$http.get("/rest/orders/list").then(resp => {
 			$scope.items = resp.data;
+		});
+		$http.get("/rest/orders/list/orderconfirm").then(resp => {
+			$scope.orders = resp.data;
 		});
 
 	}
@@ -34,6 +37,36 @@ app.controller("order-ctrl", function($scope, $http, $location) {
 		},
 		get count(){
 			return Math.ceil(1.0 * $scope.items.length / this.size);
+		},
+		first(){
+			this.page = 0;
+		},
+		prev(){
+			this.page--;
+			if(this.page < 0){
+				this.last();
+			}
+		},
+		next(){
+			this.page++;
+			if(this.page >= this.count){
+				this.first();
+			}
+		},
+		last(){
+			this.page = this.count - 1;
+		}
+	}
+
+	$scope.pagerOrderConfirm = {
+		page: 0,
+		size: 10,
+		get orders(){
+			var start = this.page * this.size;
+			return $scope.orders.slice(start, start + this.size);
+		},
+		get countOrderconfirm(){
+			return Math.ceil(1.0 * $scope.orders.length / this.size);
 		},
 		first(){
 			this.page = 0;

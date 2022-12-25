@@ -1,0 +1,36 @@
+
+s
+java:S3305,"]Inject this field value directly into "authenticationProvider", the only method that uses it.(À«ìç
+h
+java:S3305/"RInject this field value directly into "filterChain", the only method that uses it.(¹”ùè
+Q	java:S125'"<This block of commented-out lines of code should be removed.(ßáÌÞ
+V	java:S125L"<This block of commented-out lines of code should be removed.(óœ™Óúÿÿÿÿ
+Q	java:S125n"<This block of commented-out lines of code should be removed.(¬é¨›
+]	java:S125p"<This block of commented-out lines of code should be removed.(˜“åüþÿÿÿÿ8Ýœ—’Ï0
+X	java:S125v"<This block of commented-out lines of code should be removed.(ÉØ±á8£Ÿ¦‘Ï0
+Y	java:S125€"<This block of commented-out lines of code should be removed.(ßâ½™8£Ÿ¦‘Ï0
+^	java:S125†"<This block of commented-out lines of code should be removed.(¸¢˜Ïøÿÿÿÿ8¤Ÿ¦‘Ï0
+X
+java:S1128"=Remove this unused import 'java.util.NoSuchElementException'.(®“ÿéúÿÿÿÿ
+R
+java:S1128"7Remove this unused import 'java.util.stream.Collector'.(ß‹ÎÓøÿÿÿÿ
+S
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ
+[
+java:S1128"@Remove this unused import 'org.springframework.http.HttpMethod'.(Ê¨Ä¡øÿÿÿÿ
+—
+java:S1128"€Remove this unused import 'org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder'.(£ØÓ‰
+z
+java:S1128"dRemove this unused import 'org.springframework.security.config.annotation.web.builders.WebSecurity'.(–ëðž
+Š
+java:S1128"oRemove this unused import 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity'.(ŸÜÑýÿÿÿÿ
+
+java:S1128"zRemove this unused import 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter'.(šŽ©À
+e
+java:S1128"ORemove this unused import 'org.springframework.security.core.userdetails.User'.(–Ä€
+
+java:S1128"dRemove this unused import 'org.springframework.security.core.userdetails.UsernameNotFoundException'.(Í£Ö¶ùÿÿÿÿ
+M
+java:S1128"7Remove this unused import 'com.example.entity.Account'.(šÿû
+U
+java:S1128"?Remove this unused import 'com.example.service.AccountService'.(Úöœ
