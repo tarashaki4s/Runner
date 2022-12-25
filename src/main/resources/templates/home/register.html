@@ -35,13 +35,16 @@
             <div class="signin-right ">
                 <form th:action="@{/home/signUp}" method="post">
                     <div class="firstname form-control1 ">
-                        <input type="text" name="fullName" placeholder="FullName ">
+                        <input type="text" name="fullName" placeholder="Full name ">
                     </div>
                     <div class="firstname form-control1 ">
-                        <input type="text" name="username" placeholder="UserName">
+                        <input type="text" name="username" placeholder="User name">
                     </div>
                     <div class="password form-control1">
                         <input type="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="password form-control1">
+                        <input type="password" name="confirmPassword" placeholder="Confirm password">
                     </div>
                     <div class="sex form-control1">
                         <div class="female">
@@ -62,6 +65,7 @@
                         Policy</a> and <a href="">Terms of Service</a> apply.
                     </div>
                     <div style="color: red;" class="text-danger" th:text="${message}"></div>
+                    <div  class="text-success" th:text="${messageSuccess}"></div>
                     <br>
                     <button class="submit">
                         <p>Đăng kí</p>
