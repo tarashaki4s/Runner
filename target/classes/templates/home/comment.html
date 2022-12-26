@@ -47,33 +47,34 @@
                         direction: rtl;
                     }
                 </style>
-                <form th:action="@{/rate/{productId}/{userName}(productId = ${product.id}, userName= ${#request.userPrincipal.principal.username})}" method="POST">
-                    <div class="write-comment-place">
+                <th:block th:if="${#request.remoteUser}">
+                    <form th:action="@{/rate/{productId}/{userName}(productId = ${product.id}, userName= ${#request.userPrincipal.principal.username})}" method="POST">
+                        <div class="write-comment-place">
                             <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
                                 <textarea name="comment" class="form-control ml-1 shadow-none textarea"></textarea>
                             </div>
-                        <div class="col-6">
+                            <div class="col-6">
 
-                            <div class="rating rating2">
+                                <div class="rating rating2">
 
-                                <!--
-                                -->
-                                <a href="#5" title="Give 5 stars" onclick="setStar(5)">★</a>
-                                <!--
-                                -->
-                                <a href="#4" title="Give 4 stars" onclick="setStar(4)">★</a>
-                                <!--
-                                -->
-                                <a href="#3" title="Give 3 stars" onclick="setStar(3)">★</a>
-                                <!--
-                                -->
-                                <a href="#2" title="Give 2 stars" onclick="setStar(2)">★</a>
-                                <!--
-                                -->
-                                <a href="#1" title="Give 1 stars" onclick="setStar(1)">★</a>
-                                <input type="hidden" name="stars" id="star" value="5">
+                                    <!--
+                                    -->
+                                    <a href="#5" title="Give 5 stars" onclick="setStar(5)">★</a>
+                                    <!--
+                                    -->
+                                    <a href="#4" title="Give 4 stars" onclick="setStar(4)">★</a>
+                                    <!--
+                                    -->
+                                    <a href="#3" title="Give 3 stars" onclick="setStar(3)">★</a>
+                                    <!--
+                                    -->
+                                    <a href="#2" title="Give 2 stars" onclick="setStar(2)">★</a>
+                                    <!--
+                                    -->
+                                    <a href="#1" title="Give 1 stars" onclick="setStar(1)">★</a>
+                                    <input type="hidden" name="stars" id="star" value="5">
+                                </div>
                             </div>
-                        </div>
                             <div class="mt-2 text-right">
                                 <button class="btn btn-primary btn-sm shadow-none" type="submit" formmethod="post" >
                                     Xác nhận
@@ -82,9 +83,10 @@
                                     Cancel
                                 </button>
                             </div>
-                    </div>
+                        </div>
 
-                </form>
+                    </form>
+                </th:block>
                 <div class="comment-widgets" th:each="rate:${rates}">
                     <!-- Comment Row -->
 
